@@ -11,6 +11,7 @@ import {
   Github,
 } from "lucide-react";
 import { FiArrowUp } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,17 +26,9 @@ const Portfolio = () => {
     Message: "",
   });
   const [formMessage, setFormMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
 
   const sectionsRef = useRef<Record<string, HTMLElement | null>>({});
-
-  // Loading effect
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
+  const projectRef = useRef<HTMLElement | null>(null);
 
   // Scroll effects and active section tracking
   useEffect(() => {
@@ -134,21 +127,7 @@ const Portfolio = () => {
     },
   ];
 
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 bg-gray-900 flex items-center justify-center z-50">
-        <div className="relative">
-          <div className="w-32 h-32 bg-gray-800 border-2 border-gray-700 rounded-full flex items-center justify-center text-blue-400 text-lg font-semibold tracking-wider animate-pulse">
-            Loading
-          </div>
-          <div className="absolute inset-0 w-32 h-32 border-2 border-transparent border-t-blue-500 border-r-blue-500 rounded-full animate-spin"></div>
-          <div className="absolute top-1/2 left-1/2 w-16 h-1 bg-transparent origin-left animate-spin">
-            <div className="absolute -top-2 -right-2 w-4 h-4 bg-blue-400 rounded-full shadow-lg shadow-blue-500/50"></div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  
 
   return (
     <div className="bg-gray-900 text-gray-200 font-sans">
@@ -597,12 +576,14 @@ const Portfolio = () => {
       </section>
 
       {/* Projects Section */}
-      <section
-        ref={(el) => {
-          sectionsRef.current.projects = el;
-        }}
+      <motion.section
+        ref={projectRef}
         className="min-h-screen px-4 md:px-16 py-20"
         id="projects"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
           My <span className="text-blue-400">Projects</span>
@@ -652,7 +633,7 @@ const Portfolio = () => {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Contact Section */}
       <section
