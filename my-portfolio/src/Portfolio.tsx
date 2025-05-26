@@ -131,68 +131,7 @@ const Portfolio = () => {
 
   return (
     <div className="bg-gray-900 text-gray-200 font-sans">
-      <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-
-        * {
-          font-family: "Poppins", sans-serif;
-        }
-
-        .text-animate {
-          background: linear-gradient(to right, #00acf0, #00acf0);
-          background-size: 0% 100%;
-          background-repeat: no-repeat;
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-stroke: 1px #00acf0;
-          color: transparent;
-          animation: textFill 3s ease-in-out infinite;
-        }
-
-        @keyframes textFill {
-          0%,
-          100% {
-            background-size: 0% 100%;
-          }
-          50% {
-            background-size: 100% 100%;
-          }
-        }
-
-        .home-bg {
-          background: linear-gradient(
-            rgba(8, 27, 41, 0.8),
-            rgba(8, 27, 41, 0.8)
-          );
-          position: relative;
-        }
-
-        .skill-bar {
-          animation: fillBar 2s ease-in-out;
-        }
-
-        @keyframes fillBar {
-          from {
-            width: 0%;
-          }
-        }
-
-        .project-card {
-          transition: all 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
-        }
-
-        .project-card.selected {
-          width: 600px !important;
-        }
-
-        @media (max-width: 768px) {
-          .project-card.selected {
-            width: 100% !important;
-            height: 300px !important;
-          }
-        }
-      `}</style>
-
+      
       {/* Header */}
       <header
         className={`fixed top-0 left-0 w-full px-4 md:px-16 py-4 z-50 transition-all duration-300 ${
