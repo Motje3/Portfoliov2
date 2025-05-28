@@ -150,113 +150,7 @@ const ContactSection = ({
 
         <div className="grid lg:grid-cols-2 gap-12">
           
-          {/* Left Column - Contact Methods & Info */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            {/* Contact Cards */}
-            <motion.div variants={itemVariants}>
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
-                <span className="text-3xl mr-3">🚀</span>
-                Let's Connect
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {contactMethods.map((method, index) => (
-                  <motion.a
-                    key={index}
-                    href={method.link}
-                    target={method.link.startsWith('http') ? '_blank' : '_self'}
-                    rel={method.link.startsWith('http') ? 'noopener noreferrer' : ''}
-                    className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/10 block"
-                    whileHover={{ y: -5 }}
-                  >
-                    <div className="flex items-center mb-3">
-                      <div className="text-3xl mr-3 group-hover:scale-110 transition-transform duration-300">
-                        {method.icon}
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
-                          {method.title}
-                        </h4>
-                        <div className={`h-0.5 w-12 bg-gradient-to-r ${method.gradient} rounded-full mt-1`}></div>
-                      </div>
-                    </div>
-                    <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300 mb-1">
-                      {method.description}
-                    </p>
-                    <p className="text-sm font-semibold text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
-                      {method.value}
-                    </p>
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Availability Status */}
-            <motion.div 
-              variants={itemVariants}
-              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/8 hover:border-white/20 transition-all duration-500"
-            >
-              <h4 className="text-xl font-bold text-white mb-6 flex items-center">
-                <span className="text-2xl mr-3">⚡</span>
-                Current Availability
-              </h4>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/10">
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></div>
-                    <span className="text-white font-medium">Available for Projects</span>
-                  </div>
-                  <span className="text-green-400 text-sm font-semibold">Open</span>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/10">
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
-                    <span className="text-white font-medium">Response Time</span>
-                  </div>
-                  <span className="text-blue-400 text-sm font-semibold">Within 24h</span>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/10">
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
-                    <span className="text-white font-medium">Time Zone</span>
-                  </div>
-                  <span className="text-purple-400 text-sm font-semibold">CET (UTC+1)</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* What I'm Looking For */}
-            <motion.div 
-              variants={itemVariants}
-              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/8 hover:border-white/20 transition-all duration-500"
-            >
-              <h4 className="text-xl font-bold text-white mb-6 flex items-center">
-                <span className="text-2xl mr-3">🎯</span>
-                I'm Interested In
-              </h4>
-              <div className="space-y-3">
-                {[
-                  "Cybersecurity internships & entry-level positions",
-                  "Penetration testing opportunities",
-                  "Web development projects",
-                  "Open source collaborations",
-                  "Networking with industry professionals"
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center p-3 bg-white/5 rounded-xl border border-white/10">
-                    <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mr-3"></div>
-                    <span className="text-gray-300 text-sm">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Column - Contact Form */}
+          {/* Left Column - Contact Form */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -423,6 +317,51 @@ const ContactSection = ({
                   </motion.div>
                 )}
               </form>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column - Contact Methods */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <motion.div variants={itemVariants}>
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <span className="text-3xl mr-3">🚀</span>
+                Let's Connect
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {contactMethods.map((method, index) => (
+                  <motion.a
+                    key={index}
+                    href={method.link}
+                    target={method.link.startsWith('http') ? '_blank' : '_self'}
+                    rel={method.link.startsWith('http') ? 'noopener noreferrer' : ''}
+                    className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/10 block"
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="flex items-center mb-3">
+                      <div className="text-3xl mr-3 group-hover:scale-110 transition-transform duration-300">
+                        {method.icon}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
+                          {method.title}
+                        </h4>
+                        <div className={`h-0.5 w-12 bg-gradient-to-r ${method.gradient} rounded-full mt-1`}></div>
+                      </div>
+                    </div>
+                    <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300 mb-1">
+                      {method.description}
+                    </p>
+                    <p className="text-sm font-semibold text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+                      {method.value}
+                    </p>
+                  </motion.a>
+                ))}
+              </div>
             </motion.div>
           </motion.div>
         </div>
