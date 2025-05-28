@@ -269,22 +269,7 @@ const Portfolio = () => {
                 2025 Mohammad Falaha. All rights reserved.
                 <span className="ml-2">🔒</span>
               </p>
-              <div className="flex space-x-6 text-sm">
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center"
-                >
-                  <span className="mr-1">🔐</span>
-                  Privacy Policy
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center"
-                >
-                  <span className="mr-1">📋</span>
-                  Terms of Service
-                </a>
-              </div>
+              
             </div>
           </motion.div>
         </div>
