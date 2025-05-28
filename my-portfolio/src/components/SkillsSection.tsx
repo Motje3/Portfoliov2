@@ -6,7 +6,7 @@ const SkillsSection = ({
 }: {
   sectionsRef: React.MutableRefObject<Record<string, HTMLElement | null>>;
 }) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, { once: true });
   const [animatedValues, setAnimatedValues] = useState<{[key: string]: number}>({});
 
@@ -254,10 +254,10 @@ const SkillsSection = ({
           viewport={{ once: true }}
         >
           {[
-            { label: "Programming Languages", value: "4+", icon: "💻" },
+            { label: "Programming Languages", value: "4", icon: "💻" },
             { label: "Security Tools", value: "10+", icon: "🔐" },
-            { label: "Years Experience", value: "3+", icon: "📅" },
-            { label: "Projects Completed", value: "15+", icon: "🚀" },
+            { label: "Years Experience", value: "Error 404 :)", icon: "📅" },
+            { label: "Projects Completed", value: "6", icon: "🚀" },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
