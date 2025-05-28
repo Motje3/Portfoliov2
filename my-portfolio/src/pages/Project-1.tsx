@@ -1,7 +1,10 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RestaurantQRProjectPage = () => {
+  const navigate = useNavigate();
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [activeFeature, setActiveFeature] = useState(0);
@@ -9,28 +12,32 @@ const RestaurantQRProjectPage = () => {
   const features = [
     {
       title: "QR Code Scanning",
-      description: "Customers simply scan the QR code on their table to instantly access the digital menu on their smartphone.",
+      description:
+        "Customers simply scan the QR code on their table to instantly access the digital menu on their smartphone.",
       icon: "📱",
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-500 to-cyan-500",
     },
     {
       title: "Interactive Menu",
-      description: "Beautiful, responsive digital menu with categories, images, descriptions, and real-time pricing updates.",
+      description:
+        "Beautiful, responsive digital menu with categories, images, descriptions, and real-time pricing updates.",
       icon: "🍽️",
-      gradient: "from-green-500 to-emerald-500"
+      gradient: "from-green-500 to-emerald-500",
     },
     {
       title: "Order Management",
-      description: "Seamless order placement with customization options, special requests, and instant confirmation.",
+      description:
+        "Seamless order placement with customization options, special requests, and instant confirmation.",
       icon: "🛒",
-      gradient: "from-purple-500 to-violet-500"
+      gradient: "from-purple-500 to-violet-500",
     },
     {
       title: "Kitchen Dashboard",
-      description: "Real-time kitchen dashboard displaying incoming orders, preparation status, and completion tracking.",
+      description:
+        "Real-time kitchen dashboard displaying incoming orders, preparation status, and completion tracking.",
       icon: "👨‍🍳",
-      gradient: "from-orange-500 to-red-500"
-    }
+      gradient: "from-orange-500 to-red-500",
+    },
   ];
 
   const techStack = [
@@ -39,35 +46,39 @@ const RestaurantQRProjectPage = () => {
     { name: "Express", icon: "🚀", color: "text-yellow-400" },
     { name: "MongoDB", icon: "🍃", color: "text-green-500" },
     { name: "Socket.io", icon: "⚡", color: "text-blue-400" },
-    { name: "Tailwind CSS", icon: "🎨", color: "text-teal-400" }
+    { name: "Tailwind CSS", icon: "🎨", color: "text-teal-400" },
   ];
 
   const projectStats = [
     { label: "Development Time", value: "3 months", icon: "⏱️" },
     { label: "Technologies Used", value: "6+", icon: "🛠️" },
     { label: "Order Processing", value: "Real-time", icon: "⚡" },
-    { label: "User Experience", value: "Seamless", icon: "✨" }
+    { label: "User Experience", value: "Seamless", icon: "✨" },
   ];
 
   const containerVariants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const handleBackToPortfolio = () => {
+    navigate("/"); // Navigate to the main page (root path)
   };
 
   return (
@@ -80,8 +91,8 @@ const RestaurantQRProjectPage = () => {
         transition={{ duration: 0.8 }}
       >
         <div className="flex justify-between items-center max-w-7xl mx-auto">
-          <motion.a 
-            href="#" 
+          <motion.a
+            href="#"
             className="flex items-center space-x-3 group"
             whileHover={{ scale: 1.05 }}
           >
@@ -97,6 +108,7 @@ const RestaurantQRProjectPage = () => {
             className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl px-6 py-3 text-white hover:bg-white/20 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={handleBackToPortfolio} // 3. Add onClick handler
           >
             ← Back to Portfolio
           </motion.button>
@@ -104,15 +116,16 @@ const RestaurantQRProjectPage = () => {
       </motion.header>
 
       {/* Hero Section */}
-      <section 
+      <section
         className="min-h-screen flex items-center px-4 md:px-16 pt-20 relative overflow-hidden"
         style={{
-          background: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%), #0f172a',
+          background:
+            "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%), #0f172a",
         }}
       >
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div 
+          <motion.div
             className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"
             animate={{
               scale: [1, 1.2, 1],
@@ -121,10 +134,10 @@ const RestaurantQRProjectPage = () => {
             transition={{
               duration: 8,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
-          <motion.div 
+          <motion.div
             className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-green-500/10 to-cyan-500/10 rounded-full blur-3xl"
             animate={{
               scale: [1.2, 1, 1.2],
@@ -134,7 +147,7 @@ const RestaurantQRProjectPage = () => {
               duration: 6,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 2
+              delay: 2,
             }}
           />
         </div>
@@ -153,26 +166,30 @@ const RestaurantQRProjectPage = () => {
               </span>
             </motion.div>
 
-            <motion.h1 
+            <motion.h1
               variants={itemVariants}
               className="text-5xl md:text-7xl font-bold leading-tight"
             >
-              Restaurant 
+              Restaurant
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-500 to-purple-500">
                 QR System
               </span>
             </motion.h1>
 
-            <motion.p 
+            <motion.p
               variants={itemVariants}
               className="text-xl text-gray-300 leading-relaxed max-w-2xl"
             >
-              A revolutionary dining experience that transforms how customers interact with restaurants. 
-              Scan, browse, order, and enjoy - all through an intuitive digital ecosystem that connects 
-              diners directly with the kitchen through cutting-edge technology.
+              A revolutionary dining experience that transforms how customers
+              interact with restaurants. Scan, browse, order, and enjoy - all
+              through an intuitive digital ecosystem that connects diners
+              directly with the kitchen through cutting-edge technology.
             </motion.p>
 
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-4"
+            >
               <motion.button
                 className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-green-500/25"
                 whileHover={{ scale: 1.05, y: -2 }}
@@ -214,14 +231,18 @@ const RestaurantQRProjectPage = () => {
                 transition={{
                   duration: 4,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               >
                 <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 h-full flex flex-col items-center justify-center space-y-4">
                   <div className="text-6xl mb-4">📱</div>
-                  <div className="text-white font-bold text-xl text-center">QR Menu System</div>
-                  <div className="text-gray-400 text-sm text-center">Scan • Browse • Order • Enjoy</div>
-                  
+                  <div className="text-white font-bold text-xl text-center">
+                    QR Menu System
+                  </div>
+                  <div className="text-gray-400 text-sm text-center">
+                    Scan • Browse • Order • Enjoy
+                  </div>
+
                   {/* Floating QR Code */}
                   <motion.div
                     className="w-20 h-20 bg-white rounded-lg flex items-center justify-center text-2xl"
@@ -232,7 +253,7 @@ const RestaurantQRProjectPage = () => {
                     transition={{
                       duration: 3,
                       repeat: Infinity,
-                      ease: "easeInOut"
+                      ease: "easeInOut",
                     }}
                   >
                     📋
@@ -259,7 +280,7 @@ const RestaurantQRProjectPage = () => {
                     duration: 4,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: item.delay
+                    delay: item.delay,
                   }}
                 >
                   {item.icon}
@@ -273,7 +294,7 @@ const RestaurantQRProjectPage = () => {
       {/* Features Section */}
       <section className="min-h-screen px-4 md:px-16 py-20 relative overflow-hidden bg-gray-800">
         <div className="relative z-10 max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -281,10 +302,14 @@ const RestaurantQRProjectPage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              Key <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">Features</span>
+              Key{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+                Features
+              </span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              Discover the innovative features that make this QR system a game-changer for restaurants
+              Discover the innovative features that make this QR system a
+              game-changer for restaurants
             </p>
           </motion.div>
 
@@ -296,8 +321,8 @@ const RestaurantQRProjectPage = () => {
                   key={index}
                   className={`p-6 rounded-2xl border cursor-pointer transition-all duration-300 ${
                     activeFeature === index
-                      ? 'bg-white/10 border-white/30 shadow-2xl'
-                      : 'bg-white/5 border-white/10 hover:bg-white/8'
+                      ? "bg-white/10 border-white/30 shadow-2xl"
+                      : "bg-white/5 border-white/10 hover:bg-white/8"
                   }`}
                   onClick={() => setActiveFeature(index)}
                   whileHover={{ scale: 1.02 }}
@@ -307,11 +332,15 @@ const RestaurantQRProjectPage = () => {
                   viewport={{ once: true }}
                 >
                   <div className="flex items-center space-x-4">
-                    <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center text-2xl`}>
+                    <div
+                      className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center text-2xl`}
+                    >
                       {feature.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+                      <h3 className="text-xl font-bold text-white mb-2">
+                        {feature.title}
+                      </h3>
                       <p className="text-gray-400">{feature.description}</p>
                     </div>
                   </div>
@@ -329,14 +358,22 @@ const RestaurantQRProjectPage = () => {
             >
               <div className="text-center space-y-6">
                 <div className="text-8xl">{features[activeFeature].icon}</div>
-                <h3 className="text-2xl font-bold text-white">{features[activeFeature].title}</h3>
-                <p className="text-gray-300 leading-relaxed">{features[activeFeature].description}</p>
-                
+                <h3 className="text-2xl font-bold text-white">
+                  {features[activeFeature].title}
+                </h3>
+                <p className="text-gray-300 leading-relaxed">
+                  {features[activeFeature].description}
+                </p>
+
                 {/* Feature Demo */}
                 <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
                   <div className="text-4xl mb-4">🎯</div>
-                  <div className="text-sm text-gray-400">Feature Demonstration</div>
-                  <div className="text-white font-semibold">Interactive Preview Coming Soon</div>
+                  <div className="text-sm text-gray-400">
+                    Feature Demonstration
+                  </div>
+                  <div className="text-white font-semibold">
+                    Interactive Preview Coming Soon
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -347,7 +384,7 @@ const RestaurantQRProjectPage = () => {
       {/* Tech Stack Section */}
       <section className="px-4 md:px-16 py-20">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -355,10 +392,14 @@ const RestaurantQRProjectPage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              Tech <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Stack</span>
+              Tech{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+                Stack
+              </span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              Built with modern technologies for optimal performance and scalability
+              Built with modern technologies for optimal performance and
+              scalability
             </p>
           </motion.div>
 
@@ -376,7 +417,9 @@ const RestaurantQRProjectPage = () => {
                 <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
                   {tech.icon}
                 </div>
-                <div className={`font-semibold ${tech.color} group-hover:text-white transition-colors duration-300`}>
+                <div
+                  className={`font-semibold ${tech.color} group-hover:text-white transition-colors duration-300`}
+                >
                   {tech.name}
                 </div>
               </motion.div>
@@ -400,7 +443,9 @@ const RestaurantQRProjectPage = () => {
                 viewport={{ once: true }}
               >
                 <div className="text-4xl mb-3">{stat.icon}</div>
-                <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-2xl font-bold text-white mb-1">
+                  {stat.value}
+                </div>
                 <div className="text-sm text-gray-400">{stat.label}</div>
               </motion.div>
             ))}
@@ -419,13 +464,17 @@ const RestaurantQRProjectPage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Interested in this <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">Project?</span>
+              Interested in this{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+                Project?
+              </span>
             </h2>
             <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-              Want to learn more about the development process, see the code, or discuss similar projects? 
-              I'd love to share more details about this exciting restaurant technology solution.
+              Want to learn more about the development process, see the code, or
+              discuss similar projects? I'd love to share more details about
+              this exciting restaurant technology solution.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
                 className="bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-green-500/25"
