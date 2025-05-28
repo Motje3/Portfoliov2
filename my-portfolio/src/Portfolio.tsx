@@ -108,25 +108,14 @@ const Portfolio = () => {
 
       <ProjectsSection sectionsRef={sectionsRef} />
 
-      {/* Contact Section */}
-      <section
-        ref={(el) => {
-          if (el) sectionsRef.current.contact = el;
-        }}
-        className="min-h-screen px-4 md:px-16 py-20 bg-gray-800"
-        id="contact"
-      >
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-          Contact <span className="text-blue-400">Me</span>
-        </h2>
-
-        <ContactForm
+      <ContactForm
+          sectionsRef={sectionsRef}
           formData={formData}
           setFormData={setFormData}
           handleFormSubmit={handleFormSubmit}
           handleInputChange={handleInputChange}
         />
-      </section>
+      
 
       {/* Footer */}
       <footer className="bg-gray-900 border-t border-gray-700 px-4 md:px-16 py-8">
