@@ -10,7 +10,7 @@ const TypewriterText = () => {
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-    
+
     const typeText = () => {
       if (isTyping && displayText.length < fullText.length) {
         // Typing phase
@@ -42,22 +42,25 @@ const TypewriterText = () => {
   // Cursor blinking effect
   useEffect(() => {
     const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
+      setShowCursor((prev) => !prev);
     }, 530); // Cursor blink speed
 
     return () => clearInterval(cursorInterval);
   }, []);
 
   return (
-    <span className="relative">
-      {displayText}
-      <span 
-        className={`inline-block w-1 h-full bg-gradient-to-b from-blue-400 to-purple-500 ml-1 transition-opacity duration-100 ${
-          showCursor ? 'opacity-100' : 'opacity-20'
+    <span className="relative inline-block">
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400">
+        {displayText}
+      </span>
+      <span
+        className={`inline-block w-1 bg-gradient-to-b from-blue-400 to-purple-500 ml-1 transition-opacity duration-100 ${
+          showCursor ? "opacity-100" : "opacity-20"
         }`}
-        style={{ 
-          animation: showCursor ? 'pulse 1.5s ease-in-out infinite' : 'none',
-          boxShadow: showCursor ? '0 0 10px rgba(59, 130, 246, 0.5)' : 'none'
+        style={{
+          height: "1em",
+          animation: showCursor ? "pulse 1.5s ease-in-out infinite" : "none",
+          boxShadow: showCursor ? "0 0 10px rgba(59, 130, 246, 0.5)" : "none",
         }}
       >
         |
@@ -71,7 +74,7 @@ const HomeSection = ({
 }: {
   sectionsRef: React.MutableRefObject<Record<string, HTMLElement | null>>;
 }) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, { once: true });
   const controls = useAnimation();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -85,8 +88,8 @@ const HomeSection = ({
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   // Animate elements when in view
@@ -101,21 +104,21 @@ const HomeSection = ({
     visible: {
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const floatVariants = {
@@ -124,36 +127,36 @@ const HomeSection = ({
       transition: {
         duration: 4,
         repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   const socialLinks = [
-    { 
-      name: "LinkedIn", 
+    {
+      name: "LinkedIn",
       url: "https://www.linkedin.com/in/mohammad-falaha-6703091b8",
       icon: "💼",
-      gradient: "from-blue-600 to-blue-800"
+      gradient: "from-blue-600 to-blue-800",
     },
-    { 
-      name: "GitHub", 
+    {
+      name: "GitHub",
       url: "https://github.com/Motje3",
       icon: "💻",
-      gradient: "from-gray-700 to-gray-900"
+      gradient: "from-gray-700 to-gray-900",
     },
-    { 
-      name: "Instagram", 
+    {
+      name: "Instagram",
       url: "https://www.instagram.com/mohammad_mo_o/",
       icon: "📸",
-      gradient: "from-pink-600 to-purple-700"
+      gradient: "from-pink-600 to-purple-700",
     },
-    { 
-      name: "WhatsApp", 
+    {
+      name: "WhatsApp",
       url: "https://wa.me/+31686336164",
       icon: "💬",
-      gradient: "from-green-600 to-emerald-700"
-    }
+      gradient: "from-green-600 to-emerald-700",
+    },
   ];
 
   const skills = [
@@ -172,12 +175,13 @@ const HomeSection = ({
       className="min-h-screen flex items-center px-4 md:px-16 relative overflow-hidden"
       id="home"
       style={{
-        background: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%), #0f172a',
+        background:
+          "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%), #0f172a",
       }}
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
@@ -186,10 +190,10 @@ const HomeSection = ({
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-green-500/10 to-cyan-500/10 rounded-full blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
@@ -199,10 +203,10 @@ const HomeSection = ({
             duration: 6,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 2
+            delay: 2,
           }}
         />
-        <motion.div 
+        <motion.div
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-purple-500/8 to-pink-500/8 rounded-full blur-3xl"
           animate={{
             rotate: [0, 180, 360],
@@ -211,15 +215,12 @@ const HomeSection = ({
           transition={{
             duration: 12,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
         />
       </div>
 
-
-
       <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center min-h-screen px-4 md:px-16">
-        
         {/* Left Column - Main Content */}
         <motion.div
           className="space-y-8"
@@ -229,16 +230,16 @@ const HomeSection = ({
         >
           {/* Main Heading */}
           <motion.div variants={itemVariants}>
-            <motion.h1 
+            <motion.h1
               className="text-5xl md:text-7xl font-bold leading-tight mb-6"
               style={{
-                transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`
+                transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
               }}
             >
-              Hi, I'm{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400">
+              <div>Hi, I'm</div>
+              <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400">
                 <TypewriterText />
-              </span>
+              </div>
             </motion.h1>
           </motion.div>
 
@@ -258,16 +259,32 @@ const HomeSection = ({
           {/* Description */}
           <motion.div variants={itemVariants}>
             <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
-              Welcome! I'm an IT student with an unwavering passion for cybersecurity. 
-              While I specialize in software development, I'm constantly expanding my expertise in 
-              <span className="text-blue-400 font-semibold"> ethical hacking</span>, 
-              <span className="text-green-400 font-semibold"> network security</span>, and 
-              <span className="text-purple-400 font-semibold"> secure coding</span>.
+              Welcome! I'm an IT student with an unwavering passion for
+              cybersecurity. While I specialize in software development, I'm
+              constantly expanding my expertise in
+              <span className="text-blue-400 font-semibold">
+                {" "}
+                ethical hacking
+              </span>
+              ,
+              <span className="text-green-400 font-semibold">
+                {" "}
+                network security
+              </span>
+              , and
+              <span className="text-purple-400 font-semibold">
+                {" "}
+                secure coding
+              </span>
+              .
             </p>
           </motion.div>
 
           {/* Action Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-4"
+          >
             <motion.a
               href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
               className="group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-center shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40"
@@ -277,9 +294,7 @@ const HomeSection = ({
               <div className="flex items-center justify-center space-x-2">
                 <span>📄</span>
                 <span>Download CV</span>
-                <motion.span
-                  className="group-hover:translate-x-1 transition-transform duration-200"
-                >
+                <motion.span className="group-hover:translate-x-1 transition-transform duration-200">
                   →
                 </motion.span>
               </div>
@@ -329,12 +344,12 @@ const HomeSection = ({
           animate={controls}
         >
           <div className="relative w-96 h-96">
-            
             {/* Main Shield */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-cyan-500/20 backdrop-blur-xl border border-white/20 flex items-center justify-center"
               style={{
-                clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
+                clipPath:
+                  "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
               }}
               animate={{
                 scale: [1, 1.05, 1],
@@ -343,7 +358,7 @@ const HomeSection = ({
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             >
               <div className="text-8xl">🛡️</div>
@@ -370,7 +385,7 @@ const HomeSection = ({
                   duration: 3,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: item.delay
+                  delay: item.delay,
                 }}
               >
                 {item.text}
@@ -385,20 +400,20 @@ const HomeSection = ({
                   className="absolute text-green-400/30 text-xs font-mono"
                   style={{
                     left: `${10 + i * 8}%`,
-                    top: '-10%'
+                    top: "-10%",
                   }}
                   animate={{
-                    y: ['0vh', '50vh'],
+                    y: ["0vh", "50vh"],
                     opacity: [0, 1, 0],
                   }}
                   transition={{
                     duration: 4 + Math.random() * 2,
                     repeat: Infinity,
                     ease: "linear",
-                    delay: Math.random() * 4
+                    delay: Math.random() * 4,
                   }}
                 >
-                  {Math.random() > 0.5 ? '1' : '0'}
+                  {Math.random() > 0.5 ? "1" : "0"}
                 </motion.div>
               ))}
             </div>
@@ -413,7 +428,7 @@ const HomeSection = ({
               transition={{
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             />
             <motion.div
@@ -426,20 +441,23 @@ const HomeSection = ({
                 duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: 1
+                delay: 1,
               }}
             />
 
             {/* Network Nodes */}
             {[
-              { x: 20, y: 20 }, { x: 80, y: 30 }, { x: 15, y: 70 }, { x: 85, y: 80 }
+              { x: 20, y: 20 },
+              { x: 80, y: 30 },
+              { x: 15, y: 70 },
+              { x: 85, y: 80 },
             ].map((node, index) => (
               <motion.div
                 key={index}
                 className="absolute w-3 h-3 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50"
                 style={{
                   left: `${node.x}%`,
-                  top: `${node.y}%`
+                  top: `${node.y}%`,
                 }}
                 animate={{
                   scale: [1, 1.5, 1],
@@ -449,7 +467,7 @@ const HomeSection = ({
                   duration: 2,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: index * 0.5
+                  delay: index * 0.5,
                 }}
               />
             ))}
@@ -468,14 +486,12 @@ const HomeSection = ({
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "linear"
+                  ease: "linear",
                 }}
               />
             </svg>
-
           </div>
         </motion.div>
-
       </div>
 
       {/* Scroll Indicator */}
@@ -487,7 +503,7 @@ const HomeSection = ({
         transition={{
           duration: 2,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut",
         }}
       >
         <div className="flex flex-col items-center space-y-2">
@@ -502,7 +518,7 @@ const HomeSection = ({
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             />
           </div>
