@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const ProjectsSection = ({
   sectionsRef,
@@ -33,9 +34,14 @@ const ProjectsSection = ({
   ];
 
   const handleReadMore = (projectId: number) => {
-    // TODO: Add redirection logic here
-    // Example: window.open(`/projects/${projectId}`, '_blank');
-    console.log(`Navigate to project ${projectId} details`);
+    if (projectId === 1) {
+      let navigate = useNavigate(); // Or any logic to determine if this project should go to /project-1
+      navigate("/project-1");
+    } else {
+      console.log(
+        `Maps to project ${projectId} details (specific route for this ID is not /project-1)`
+      );
+    }
   };
 
   return (
