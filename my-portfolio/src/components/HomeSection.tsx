@@ -10,7 +10,7 @@ const TypewriterText = () => {
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-
+    
     const typeText = () => {
       if (isTyping && displayText.length < fullText.length) {
         // Typing phase
@@ -42,7 +42,7 @@ const TypewriterText = () => {
   // Cursor blinking effect
   useEffect(() => {
     const cursorInterval = setInterval(() => {
-      setShowCursor((prev) => !prev);
+      setShowCursor(prev => !prev);
     }, 530); // Cursor blink speed
 
     return () => clearInterval(cursorInterval);
@@ -53,14 +53,14 @@ const TypewriterText = () => {
       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400">
         {displayText}
       </span>
-      <span
+      <span 
         className={`inline-block w-1 bg-gradient-to-b from-blue-400 to-purple-500 ml-1 transition-opacity duration-100 ${
-          showCursor ? "opacity-100" : "opacity-20"
+          showCursor ? 'opacity-100' : 'opacity-20'
         }`}
-        style={{
-          height: "1em",
-          animation: showCursor ? "pulse 1.5s ease-in-out infinite" : "none",
-          boxShadow: showCursor ? "0 0 10px rgba(59, 130, 246, 0.5)" : "none",
+        style={{ 
+          height: '1em',
+          animation: showCursor ? 'pulse 1.5s ease-in-out infinite' : 'none',
+          boxShadow: showCursor ? '0 0 10px rgba(59, 130, 246, 0.5)' : 'none'
         }}
       >
         |
@@ -88,8 +88,8 @@ const HomeSection = ({
       });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   // Animate elements when in view
@@ -104,21 +104,21 @@ const HomeSection = ({
     visible: {
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
+        delayChildren: 0.3
+      }
+    }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
+    visible: { 
+      opacity: 1, 
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
-      },
-    },
+        ease: "easeOut"
+      }
+    }
   };
 
   const floatVariants = {
@@ -127,36 +127,36 @@ const HomeSection = ({
       transition: {
         duration: 4,
         repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
+        ease: "easeInOut"
+      }
+    }
   };
 
   const socialLinks = [
-    {
-      name: "LinkedIn",
+    { 
+      name: "LinkedIn", 
       url: "https://www.linkedin.com/in/mohammad-falaha-6703091b8",
       icon: "💼",
-      gradient: "from-blue-600 to-blue-800",
+      gradient: "from-blue-600 to-blue-800"
     },
-    {
-      name: "GitHub",
+    { 
+      name: "GitHub", 
       url: "https://github.com/Motje3",
       icon: "💻",
-      gradient: "from-gray-700 to-gray-900",
+      gradient: "from-gray-700 to-gray-900"
     },
-    {
-      name: "Instagram",
+    { 
+      name: "Instagram", 
       url: "https://www.instagram.com/mohammad_mo_o/",
       icon: "📸",
-      gradient: "from-pink-600 to-purple-700",
+      gradient: "from-pink-600 to-purple-700"
     },
-    {
-      name: "WhatsApp",
+    { 
+      name: "WhatsApp", 
       url: "https://wa.me/+31686336164",
       icon: "💬",
-      gradient: "from-green-600 to-emerald-700",
-    },
+      gradient: "from-green-600 to-emerald-700"
+    }
   ];
 
   const skills = [
@@ -175,13 +175,12 @@ const HomeSection = ({
       className="min-h-screen flex items-center px-4 md:px-16 relative overflow-hidden"
       id="home"
       style={{
-        background:
-          "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%), #0f172a",
+        background: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%), #0f172a',
       }}
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
+        <motion.div 
           className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
@@ -190,10 +189,10 @@ const HomeSection = ({
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "easeInOut"
           }}
         />
-        <motion.div
+        <motion.div 
           className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-green-500/10 to-cyan-500/10 rounded-full blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
@@ -203,10 +202,10 @@ const HomeSection = ({
             duration: 6,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 2,
+            delay: 2
           }}
         />
-        <motion.div
+        <motion.div 
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-purple-500/8 to-pink-500/8 rounded-full blur-3xl"
           animate={{
             rotate: [0, 180, 360],
@@ -215,12 +214,15 @@ const HomeSection = ({
           transition={{
             duration: 12,
             repeat: Infinity,
-            ease: "linear",
+            ease: "linear"
           }}
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center min-h-screen px-4 md:px-16">
+
+
+      <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center min-h-screen">
+        
         {/* Left Column - Main Content */}
         <motion.div
           className="space-y-8"
@@ -230,10 +232,10 @@ const HomeSection = ({
         >
           {/* Main Heading */}
           <motion.div variants={itemVariants}>
-            <motion.h1
+            <motion.h1 
               className="text-5xl md:text-7xl font-bold leading-tight mb-6"
               style={{
-                transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+                transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`
               }}
             >
               <div>Hi, I'm</div>
@@ -259,32 +261,16 @@ const HomeSection = ({
           {/* Description */}
           <motion.div variants={itemVariants}>
             <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
-              Welcome! I'm an IT student with an unwavering passion for
-              cybersecurity. While I specialize in software development, I'm
-              constantly expanding my expertise in
-              <span className="text-blue-400 font-semibold">
-                {" "}
-                ethical hacking
-              </span>
-              ,
-              <span className="text-green-400 font-semibold">
-                {" "}
-                network security
-              </span>
-              , and
-              <span className="text-purple-400 font-semibold">
-                {" "}
-                secure coding
-              </span>
-              .
+              Welcome! I'm an IT student with an unwavering passion for cybersecurity. 
+              While I specialize in software development, I'm constantly expanding my expertise in 
+              <span className="text-blue-400 font-semibold"> ethical hacking</span>, 
+              <span className="text-green-400 font-semibold"> network security</span>, and 
+              <span className="text-purple-400 font-semibold"> secure coding</span>.
             </p>
           </motion.div>
 
           {/* Action Buttons */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4"
-          >
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
             <motion.a
               href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
               className="group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-center shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40"
@@ -294,7 +280,9 @@ const HomeSection = ({
               <div className="flex items-center justify-center space-x-2">
                 <span>📄</span>
                 <span>Download CV</span>
-                <motion.span className="group-hover:translate-x-1 transition-transform duration-200">
+                <motion.span
+                  className="group-hover:translate-x-1 transition-transform duration-200"
+                >
                   →
                 </motion.span>
               </div>
@@ -343,13 +331,13 @@ const HomeSection = ({
           initial="hidden"
           animate={controls}
         >
-          <div className="relative w-96 h-96">
+          <div className="relative w-[500px] h-[500px]">
+            
             {/* Main Shield */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-cyan-500/20 backdrop-blur-xl border border-white/20 flex items-center justify-center"
               style={{
-                clipPath:
-                  "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+                clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
               }}
               animate={{
                 scale: [1, 1.05, 1],
@@ -358,34 +346,34 @@ const HomeSection = ({
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: "easeInOut"
               }}
             >
-              <div className="text-8xl">🛡️</div>
+              <div className="text-[120px]">🛡️</div>
             </motion.div>
 
             {/* Floating Code Elements */}
             {[
-              { text: "SSH", pos: { top: "10%", left: "20%" }, delay: 0 },
-              { text: "SSL", pos: { top: "20%", right: "15%" }, delay: 0.5 },
-              { text: "VPN", pos: { bottom: "30%", left: "10%" }, delay: 1 },
-              { text: "AES", pos: { bottom: "15%", right: "20%" }, delay: 1.5 },
-              { text: "RSA", pos: { top: "50%", left: "5%" }, delay: 2 },
-              { text: "TLS", pos: { top: "40%", right: "5%" }, delay: 2.5 },
+              { text: "SSH", pos: { top: "8%", left: "15%" }, delay: 0 },
+              { text: "SSL", pos: { top: "15%", right: "10%" }, delay: 0.5 },
+              { text: "VPN", pos: { bottom: "25%", left: "5%" }, delay: 1 },
+              { text: "AES", pos: { bottom: "10%", right: "15%" }, delay: 1.5 },
+              { text: "RSA", pos: { top: "45%", left: "0%" }, delay: 2 },
+              { text: "TLS", pos: { top: "35%", right: "0%" }, delay: 2.5 },
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="absolute bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg px-3 py-2 text-sm font-mono text-green-400"
+                className="absolute bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg px-4 py-3 text-base font-mono text-green-400 font-semibold"
                 style={item.pos}
                 animate={{
-                  y: [0, -10, 0],
+                  y: [0, -15, 0],
                   opacity: [0.6, 1, 0.6],
                 }}
                 transition={{
                   duration: 3,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: item.delay,
+                  delay: item.delay
                 }}
               >
                 {item.text}
@@ -394,80 +382,77 @@ const HomeSection = ({
 
             {/* Binary Rain Effect */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              {[...Array(12)].map((_, i) => (
+              {[...Array(15)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute text-green-400/30 text-xs font-mono"
+                  className="absolute text-green-400/40 text-sm font-mono font-bold"
                   style={{
-                    left: `${10 + i * 8}%`,
-                    top: "-10%",
+                    left: `${8 + i * 6}%`,
+                    top: '-15%'
                   }}
                   animate={{
-                    y: ["0vh", "50vh"],
+                    y: ['0vh', '60vh'],
                     opacity: [0, 1, 0],
                   }}
                   transition={{
                     duration: 4 + Math.random() * 2,
                     repeat: Infinity,
                     ease: "linear",
-                    delay: Math.random() * 4,
+                    delay: Math.random() * 4
                   }}
                 >
-                  {Math.random() > 0.5 ? "1" : "0"}
+                  {Math.random() > 0.5 ? '1' : '0'}
                 </motion.div>
               ))}
             </div>
 
             {/* Pulse Rings */}
             <motion.div
-              className="absolute inset-0 border-2 border-blue-400/30 rounded-full"
+              className="absolute inset-0 border-4 border-blue-400/30 rounded-full"
               animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.3, 0.1, 0.3],
+                scale: [1, 1.4, 1],
+                opacity: [0.4, 0.1, 0.4],
               }}
               transition={{
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: "easeInOut"
               }}
             />
             <motion.div
-              className="absolute inset-0 border-2 border-purple-400/20 rounded-full"
+              className="absolute inset-0 border-3 border-purple-400/25 rounded-full"
               animate={{
-                scale: [1.1, 1.4, 1.1],
-                opacity: [0.2, 0.05, 0.2],
+                scale: [1.1, 1.5, 1.1],
+                opacity: [0.3, 0.05, 0.3],
               }}
               transition={{
                 duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: 1,
+                delay: 1
               }}
             />
 
             {/* Network Nodes */}
             {[
-              { x: 20, y: 20 },
-              { x: 80, y: 30 },
-              { x: 15, y: 70 },
-              { x: 85, y: 80 },
+              { x: 15, y: 15 }, { x: 85, y: 25 }, { x: 10, y: 75 }, { x: 90, y: 85 }
             ].map((node, index) => (
               <motion.div
                 key={index}
-                className="absolute w-3 h-3 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50"
+                className="absolute w-5 h-5 bg-cyan-400 rounded-full shadow-xl shadow-cyan-400/60"
                 style={{
                   left: `${node.x}%`,
-                  top: `${node.y}%`,
+                  top: `${node.y}%`
                 }}
                 animate={{
-                  scale: [1, 1.5, 1],
+                  scale: [1, 1.8, 1],
                   opacity: [0.7, 1, 0.7],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: index * 0.5,
+                  delay: index * 0.5
                 }}
               />
             ))}
@@ -475,23 +460,25 @@ const HomeSection = ({
             {/* Connecting Lines */}
             <svg className="absolute inset-0 w-full h-full">
               <motion.path
-                d="M 80 120 Q 200 160 320 120 Q 200 200 80 280"
-                stroke="rgba(59, 130, 246, 0.3)"
-                strokeWidth="2"
+                d="M 100 150 Q 250 200 400 150 Q 250 250 100 350"
+                stroke="rgba(59, 130, 246, 0.4)"
+                strokeWidth="3"
                 fill="none"
-                strokeDasharray="5,5"
+                strokeDasharray="8,8"
                 animate={{
-                  strokeDashoffset: [0, -20],
+                  strokeDashoffset: [0, -30],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "linear",
+                  ease: "linear"
                 }}
               />
             </svg>
+
           </div>
         </motion.div>
+
       </div>
 
       {/* Scroll Indicator */}
@@ -503,7 +490,7 @@ const HomeSection = ({
         transition={{
           duration: 2,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "easeInOut"
         }}
       >
         <div className="flex flex-col items-center space-y-2">
@@ -518,7 +505,7 @@ const HomeSection = ({
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: "easeInOut"
               }}
             />
           </div>
