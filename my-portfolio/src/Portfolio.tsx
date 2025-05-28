@@ -16,7 +16,7 @@ import SkillsSection from "./components/SkillsSection";
 import ProjectsSection from "./components/ProjectsSection";
 
 // Import the new glassmorphism contact section
-import ContactSection from "./components/ContactForm";
+import ContactSection from "./components/ContactSection";
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -87,7 +87,13 @@ const Portfolio = () => {
   const scrollToSection = (sectionId: string) => {
     const element = sectionsRef.current[sectionId];
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const headerOffset = 100; // Adjust this value based on your header height
+      const elementPosition = element.offsetTop - headerOffset;
+      
+      window.scrollTo({
+        top: elementPosition,
+        behavior: "smooth"
+      });
     }
     setIsMenuOpen(false);
   };
