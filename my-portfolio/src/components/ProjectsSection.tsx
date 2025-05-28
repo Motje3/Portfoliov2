@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Correctly imported
 
 const ProjectsSection = ({
   sectionsRef,
 }: {
   sectionsRef: React.MutableRefObject<Record<string, HTMLElement | null>>;
 }) => {
+  const navigate = useNavigate(); // <--- CORRECT: Hook called at the top level of the component
+
   const projects = [
     {
       id: 1,
@@ -35,11 +37,11 @@ const ProjectsSection = ({
 
   const handleReadMore = (projectId: number) => {
     if (projectId === 1) {
-      let navigate = useNavigate(); // Or any logic to determine if this project should go to /project-1
+      // Now 'navigate' is available from the component's scope
       navigate("/project-1");
     } else {
       console.log(
-        `Maps to project ${projectId} details (specific route for this ID is not /project-1)`
+        `Maps to project ${projectId} details (route /project-1 is for ID 1, specific route for this ID not configured)`
       );
     }
   };
@@ -99,10 +101,8 @@ const ProjectsSection = ({
               transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: true }}
             >
-              {/* Glassmorphism card - MODIFIED HERE */}
               <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 h-full hover:bg-white/10 hover:border-white/20 transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-blue-500/10 flex flex-col">
                 {" "}
-                {/* Added flex flex-col */}
                 {/* Category badge */}
                 <div className="absolute top-4 right-4">
                   <span className="px-3 py-1 text-xs font-semibold text-blue-400 bg-blue-500/20 rounded-full border border-blue-500/30 backdrop-blur-sm">
@@ -117,10 +117,9 @@ const ProjectsSection = ({
                     </span>
                   </div>
                 </div>
-                {/* Content - MODIFIED HERE */}
+                {/* Content */}
                 <div className="space-y-4 mb-8 flex-grow">
                   {" "}
-                  {/* Added flex-grow */}
                   <h3 className="text-2xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
                     {project.title}
                   </h3>
@@ -139,7 +138,7 @@ const ProjectsSection = ({
                     ))}
                   </div>
                 </div>
-                {/* Read More Button - This will now be at the bottom */}
+                {/* Read More Button */}
                 <button
                   onClick={() => handleReadMore(project.id)}
                   className="w-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 text-white font-semibold py-3 px-6 rounded-xl border border-white/20 backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:shadow-lg hover:shadow-blue-500/20 group-hover:transform group-hover:translate-y-0"
