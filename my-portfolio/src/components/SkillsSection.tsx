@@ -254,24 +254,7 @@ const SkillsSection = ({
                   ))}
                 </div>
 
-                {/* Card Footer Stats */}
-                <div className="mt-8 pt-6 border-t border-white/10">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-400">
-                      {category.skills.length} Skills
-                    </span>
-                    <span className="text-blue-400 font-semibold">
-                      Avg:{" "}
-                      {Math.round(
-                        category.skills.reduce(
-                          (acc, skill) => acc + skill.level,
-                          0
-                        ) / category.skills.length
-                      )}
-                      %
-                    </span>
-                  </div>
-                </div>
+                
 
                 {/* Hover glow effect */}
                 <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
