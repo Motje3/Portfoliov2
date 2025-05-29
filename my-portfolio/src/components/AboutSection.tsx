@@ -376,46 +376,6 @@ const AboutSection = ({
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 max-w-4xl mx-auto hover:bg-white/8 hover:border-white/20 transition-all duration-500">
-            <h4 className="text-2xl font-bold text-white mb-4">
-              Ready to{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                Collaborate?
-              </span>
-            </h4>
-            <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-              Whether you're looking for a cybersecurity enthusiast, a
-              problem-solving developer, or someone passionate about digital
-              security, I'd love to connect and explore opportunities together.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Let's Connect
-              </motion.button>
-
-              <motion.button
-                className="border-2 border-blue-500 hover:bg-blue-500 text-blue-500 hover:text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View My Work
-              </motion.button>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </motion.section>
   );
