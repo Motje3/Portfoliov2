@@ -217,8 +217,8 @@ const AboutSection = ({
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Discover the passion, dedication, and vision that drives my journey
-            in cybersecurity
+            More than just lines of code — this is where curiosity, caffeine,
+            and cybersecurity collide.
           </p>
         </motion.div>
 

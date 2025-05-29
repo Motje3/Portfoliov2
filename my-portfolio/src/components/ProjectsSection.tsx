@@ -15,7 +15,7 @@ const ProjectsSection = ({
       description:
         "A comprehensive home lab environment designed for practicing cybersecurity concepts, penetration testing, and network security analysis.",
       tech: ["VMware", "Kali Linux", "pfSense", "Windows Server"],
-      category: "Infrastructure",
+      category: "Cyber Security",
     },
     {
       id: 2,
