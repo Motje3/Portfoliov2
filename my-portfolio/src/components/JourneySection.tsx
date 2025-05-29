@@ -214,11 +214,11 @@ const JourneySection = ({
   return (
     <motion.section
       ref={(el) => {
-        if (el) sectionsRef.current.education = el;
+        if (el) sectionsRef.current.journey  = el;
         ref.current = el;
       }}
       className="min-h-screen px-4 md:px-16 py-20 relative overflow-hidden"
-      id="education"
+      id="journey"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -249,8 +249,7 @@ const JourneySection = ({
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Explore my educational background, professional experience, and
-            achievements that shaped my cybersecurity expertise
+            Every journey starts somewhere. Here’s mine..
           </p>
         </motion.div>
 

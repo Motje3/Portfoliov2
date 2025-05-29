@@ -8,7 +8,9 @@ const SkillsSection = ({
 }) => {
   const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, { once: true });
-  const [animatedValues, setAnimatedValues] = useState<{[key: string]: number}>({});
+  const [animatedValues, setAnimatedValues] = useState<{
+    [key: string]: number;
+  }>({});
 
   const skillCategories = [
     {
@@ -17,9 +19,13 @@ const SkillsSection = ({
       skills: [
         { name: "C#", level: 90, color: "from-purple-500 to-violet-600" },
         { name: "Python", level: 85, color: "from-blue-500 to-cyan-500" },
-        { name: "JavaScript", level: 80, color: "from-yellow-400 to-orange-500" },
+        {
+          name: "JavaScript",
+          level: 80,
+          color: "from-yellow-400 to-orange-500",
+        },
         { name: "SQL", level: 75, color: "from-green-500 to-emerald-600" },
-      ]
+      ],
     },
     {
       title: "Cybersecurity Tools",
@@ -30,7 +36,7 @@ const SkillsSection = ({
         { name: "Nmap", level: 90, color: "from-gray-600 to-gray-800" },
         { name: "Metasploit", level: 75, color: "from-red-600 to-rose-700" },
         { name: "Burp Suite", level: 70, color: "from-orange-500 to-red-600" },
-      ]
+      ],
     },
     {
       title: "Frameworks & Technologies",
@@ -40,27 +46,43 @@ const SkillsSection = ({
         { name: "FastAPI", level: 80, color: "from-green-400 to-teal-600" },
         { name: "Docker", level: 75, color: "from-blue-500 to-blue-700" },
         { name: "Git", level: 90, color: "from-orange-500 to-red-500" },
-      ]
+      ],
     },
     {
       title: "Professional Skills",
       icon: "🎯",
       skills: [
-        { name: "Problem Solving", level: 95, color: "from-purple-500 to-pink-500" },
-        { name: "Team Collaboration", level: 90, color: "from-green-500 to-blue-500" },
-        { name: "Project Management", level: 80, color: "from-yellow-500 to-orange-500" },
-        { name: "Communication", level: 85, color: "from-indigo-500 to-purple-600" },
-      ]
-    }
+        {
+          name: "Problem Solving",
+          level: 95,
+          color: "from-purple-500 to-pink-500",
+        },
+        {
+          name: "Team Collaboration",
+          level: 90,
+          color: "from-green-500 to-blue-500",
+        },
+        {
+          name: "Project Management",
+          level: 80,
+          color: "from-yellow-500 to-orange-500",
+        },
+        {
+          name: "Communication",
+          level: 85,
+          color: "from-indigo-500 to-purple-600",
+        },
+      ],
+    },
   ];
 
   // Animate skill bars when section comes into view
   useEffect(() => {
     if (isInView) {
       const timer = setTimeout(() => {
-        const newValues: {[key: string]: number} = {};
-        skillCategories.forEach(category => {
-          category.skills.forEach(skill => {
+        const newValues: { [key: string]: number } = {};
+        skillCategories.forEach((category) => {
+          category.skills.forEach((skill) => {
             newValues[skill.name] = skill.level;
           });
         });
@@ -74,22 +96,22 @@ const SkillsSection = ({
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+    visible: {
+      opacity: 1,
+      y: 0,
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
@@ -105,7 +127,8 @@ const SkillsSection = ({
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
       style={{
-        background: 'radial-gradient(circle at 75% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 50%), radial-gradient(circle at 25% 75%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), #111827',
+        background:
+          "radial-gradient(circle at 75% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 50%), radial-gradient(circle at 25% 75%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), #111827",
       }}
     >
       {/* Floating background elements */}
@@ -115,7 +138,7 @@ const SkillsSection = ({
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -123,15 +146,18 @@ const SkillsSection = ({
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400">Skills</span>
+            My{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400">
+              Skills
+            </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            A comprehensive overview of my technical expertise and professional capabilities
+            The stuff I know, the tools I use, and the tech I argue with at 2AM.
           </p>
         </motion.div>
 
         {/* Skills Grid */}
-        <motion.div 
+        <motion.div
           className="grid lg:grid-cols-2 gap-8"
           variants={containerVariants}
           initial="hidden"
@@ -146,7 +172,6 @@ const SkillsSection = ({
             >
               {/* Category Card */}
               <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 h-full hover:bg-white/8 hover:border-white/20 transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-blue-500/10">
-                
                 {/* Category Header */}
                 <div className="flex items-center mb-8">
                   <div className="text-4xl mr-4 group-hover:scale-110 transition-transform duration-300">
@@ -168,7 +193,10 @@ const SkillsSection = ({
                       className="relative"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6, delay: (categoryIndex * 0.1) + (skillIndex * 0.1) }}
+                      transition={{
+                        duration: 0.6,
+                        delay: categoryIndex * 0.1 + skillIndex * 0.1,
+                      }}
                       viewport={{ once: true }}
                     >
                       {/* Skill Name and Percentage */}
@@ -185,23 +213,25 @@ const SkillsSection = ({
                       <div className="relative h-3 bg-white/5 rounded-full border border-white/10 overflow-hidden">
                         {/* Background glow */}
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse"></div>
-                        
+
                         {/* Progress Bar */}
                         <motion.div
                           className={`h-full bg-gradient-to-r ${skill.color} rounded-full relative overflow-hidden`}
                           initial={{ width: 0 }}
-                          animate={{ 
-                            width: isInView ? `${animatedValues[skill.name] || 0}%` : 0 
+                          animate={{
+                            width: isInView
+                              ? `${animatedValues[skill.name] || 0}%`
+                              : 0,
                           }}
-                          transition={{ 
-                            duration: 1.5, 
-                            delay: (categoryIndex * 0.2) + (skillIndex * 0.1),
-                            ease: "easeOut"
+                          transition={{
+                            duration: 1.5,
+                            delay: categoryIndex * 0.2 + skillIndex * 0.1,
+                            ease: "easeOut",
                           }}
                         >
                           {/* Shimmer effect */}
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 animate-pulse"></div>
-                          
+
                           {/* Glow effect */}
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
                         </motion.div>
@@ -213,9 +243,9 @@ const SkillsSection = ({
                           <div
                             key={threshold}
                             className={`w-1 h-1 rounded-full transition-all duration-500 ${
-                              (animatedValues[skill.name] || 0) >= threshold 
-                                ? 'bg-blue-400 shadow-sm shadow-blue-400' 
-                                : 'bg-white/20'
+                              (animatedValues[skill.name] || 0) >= threshold
+                                ? "bg-blue-400 shadow-sm shadow-blue-400"
+                                : "bg-white/20"
                             }`}
                           ></div>
                         ))}
@@ -231,7 +261,14 @@ const SkillsSection = ({
                       {category.skills.length} Skills
                     </span>
                     <span className="text-blue-400 font-semibold">
-                      Avg: {Math.round(category.skills.reduce((acc, skill) => acc + skill.level, 0) / category.skills.length)}%
+                      Avg:{" "}
+                      {Math.round(
+                        category.skills.reduce(
+                          (acc, skill) => acc + skill.level,
+                          0
+                        ) / category.skills.length
+                      )}
+                      %
                     </span>
                   </div>
                 </div>
@@ -246,7 +283,7 @@ const SkillsSection = ({
         </motion.div>
 
         {/* Bottom Stats Section */}
-        <motion.div 
+        <motion.div
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -265,7 +302,9 @@ const SkillsSection = ({
               whileHover={{ y: -5 }}
             >
               <div className="text-3xl mb-2">{stat.icon}</div>
-              <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+              <div className="text-2xl font-bold text-white mb-1">
+                {stat.value}
+              </div>
               <div className="text-sm text-gray-400">{stat.label}</div>
             </motion.div>
           ))}

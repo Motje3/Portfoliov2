@@ -14,7 +14,7 @@ const Header = ({
   activeSection: string;
   scrollToSection: (sectionId: string) => void;
 }) => {
-  const menuItems = ["home", "about", "education", "skills", "projects", "contact"];
+  const menuItems = ["home", "about", "journey", "skills", "projects", "contact"];
 
   return (
     <motion.header

@@ -183,7 +183,7 @@ const Portfolio = () => {
                 {[
                   "Home",
                   "About",
-                  "Education",
+                  "Journey",
                   "Skills",
                   "Projects",
                   "Contact",
