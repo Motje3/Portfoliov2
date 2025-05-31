@@ -1,6 +1,6 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { ExternalLink, Github, ArrowRight, Code, Shield, Database } from "lucide-react";
+import { ExternalLink, Github, ArrowRight, Code, Shield, Database, Plus, Minus, Sparkles } from "lucide-react";
 
 const ProjectsSection = ({
   sectionsRef,
@@ -8,6 +8,7 @@ const ProjectsSection = ({
   sectionsRef: React.MutableRefObject<Record<string, HTMLElement | null>>;
 }) => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   const projects = [
     {
@@ -20,6 +21,7 @@ const ProjectsSection = ({
       icon: Code,
       gradient: "from-emerald-500 via-teal-500 to-cyan-500",
       shadowColor: "shadow-emerald-500/20",
+      featured: true,
     },
     {
       id: 2,
@@ -31,19 +33,62 @@ const ProjectsSection = ({
       icon: Shield,
       gradient: "from-red-500 via-orange-500 to-yellow-500",
       shadowColor: "shadow-red-500/20",
+      featured: true,
     },
     {
       id: 3,
-      title: "Event Calendar",
+      title: "Shipment Tracking System",
       description:
-        "A full-stack event calendar application with responsive design, user authentication, and real-time event synchronization.",
-      tech: ["React", "Node.js", "MongoDB", "Socket.io"],
-      category: "Full-Stack",
+        "Built a mobile app that turns your phone into a package-scanning wizard. Scan, track, and watch shipments move across the world from a slick dashboard — because wondering 'where's my stuff?' is so last decade.",
+      tech: ["React Native", "C#", "PostgreSQL", "Tailwind"],
+      category: "Mobile + Backend",
       icon: Code,
-      gradient: "from-purple-500 via-pink-500 to-rose-500",
+      gradient: "from-blue-500 via-indigo-500 to-purple-500",
+      shadowColor: "shadow-blue-500/20",
+      featured: true,
+    },
+    // Additional projects (hidden initially)
+    {
+      id: 4,
+      title: "Network Security Monitor",
+      description:
+        "Real-time network monitoring dashboard that keeps an eye on your digital perimeter. Think security guard, but for packets.",
+      tech: ["Python", "Flask", "Wireshark", "D3.js"],
+      category: "Cyber Security",
+      icon: Shield,
+      gradient: "from-orange-500 via-red-500 to-pink-500",
+      shadowColor: "shadow-orange-500/20",
+      featured: false,
+    },
+    {
+      id: 5,
+      title: "Automated Backup System",
+      description:
+        "Because losing data is like forgetting your keys — embarrassing and completely avoidable. Smart backups that actually work.",
+      tech: ["C#", "PowerShell", "Azure", "SQL Server"],
+      category: "System Admin",
+      icon: Database,
+      gradient: "from-green-500 via-teal-500 to-blue-500",
+      shadowColor: "shadow-green-500/20",
+      featured: false,
+    },
+    {
+      id: 6,
+      title: "IoT Home Security Hub",
+      description:
+        "Connected home security that's smarter than a smart doorbell. Sensors, alerts, and peace of mind in one package.",
+      tech: ["Arduino", "Python", "MQTT", "React"],
+      category: "IoT",
+      icon: Code,
+      gradient: "from-purple-500 via-violet-500 to-indigo-500",
       shadowColor: "shadow-purple-500/20",
+      featured: false,
     },
   ];
+
+  const featuredProjects = projects.filter(project => project.featured);
+  const additionalProjects = projects.filter(project => !project.featured);
+  const displayedProjects = showAllProjects ? projects : featuredProjects;
 
   const handleReadMore = (projectId: number) => {
     if (projectId === 1) {
@@ -104,181 +149,260 @@ const ProjectsSection = ({
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
             Where code meets creativity and security becomes an art form
           </p>
+          
+          {/* Project Counter */}
+          <motion.div
+            className="mt-6 inline-flex items-center space-x-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-4 py-2"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+          >
+            <Sparkles className="w-4 h-4 text-blue-400" />
+            <span className="text-sm text-gray-300">
+              {showAllProjects ? `Showing all ${projects.length}` : `${featuredProjects.length} featured`} projects
+            </span>
+          </motion.div>
         </motion.div>
 
         {/* Enhanced Projects Grid */}
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => {
-              const IconComponent = project.icon;
-              return (
-                <motion.div
-                  key={project.id}
-                  className="group relative"
-                  initial={{ opacity: 0, y: 60, rotateX: 45 }}
-                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: index * 0.2,
-                    type: "spring",
-                    stiffness: 100
-                  }}
-                  viewport={{ once: true }}
-                  onHoverStart={() => setHoveredProject(project.id)}
-                  onHoverEnd={() => setHoveredProject(null)}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                >
-                  {/* Main Card */}
-                  <div className="relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-2xl border border-white/20 rounded-3xl overflow-hidden h-full group-hover:border-white/40 transition-all duration-500">
-                    
-                    {/* Animated background gradient */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                    
-                    {/* Glowing border effect */}
-                    <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
-                    
-                    <div className="relative p-8 h-full flex flex-col">
-                      {/* Header with icon and category */}
-                      <div className="flex items-start justify-between mb-6">
-                        <div className="flex items-center space-x-4">
-                          <motion.div
-                            className={`p-4 rounded-2xl bg-gradient-to-br ${project.gradient} shadow-lg ${project.shadowColor} group-hover:shadow-xl transition-all duration-300`}
-                            whileHover={{ rotate: 12, scale: 1.1 }}
-                            transition={{ type: "spring", stiffness: 300 }}
-                          >
-                            <IconComponent className="w-8 h-8 text-white" />
-                          </motion.div>
-                          <span className="text-4xl font-black text-white/20 group-hover:text-white/30 transition-colors duration-300">
-                            {project.id.toString().padStart(2, '0')}
-                          </span>
-                        </div>
-                        
-                        <motion.span
-                          className={`px-4 py-2 text-sm font-bold bg-gradient-to-r ${project.gradient} text-white rounded-full shadow-lg`}
-                          initial={{ opacity: 0, x: 20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.3 + index * 0.1 }}
-                        >
-                          {project.category}
-                        </motion.span>
-                      </div>
-
-                      {/* Project Title */}
-                      <div className="mb-4">
-                        <h3 className="text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
-                          {project.title}
-                        </h3>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-gray-300 leading-relaxed mb-6 flex-grow group-hover:text-gray-200 transition-colors duration-300">
-                        {project.description}
-                      </p>
-
-                      {/* Tech Stack with enhanced styling */}
-                      <div className="mb-8">
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.map((tech, techIndex) => (
-                            <motion.span
-                              key={techIndex}
-                              className="px-3 py-1 text-xs font-semibold text-white bg-white/10 rounded-lg border border-white/20 backdrop-blur-sm hover:bg-white/20 hover:border-white/40 transition-all duration-200"
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              whileInView={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: 0.5 + techIndex * 0.1 }}
-                              whileHover={{ scale: 1.05 }}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={showAllProjects ? 'all' : 'featured'}
+              className="grid lg:grid-cols-3 md:grid-cols-2 gap-8"
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 1 }}
+              transition={{ duration: 0.1 }}
+            >
+              {displayedProjects.map((project, index) => {
+                const IconComponent = project.icon;
+                const isAdditionalProject = !project.featured;
+                
+                return (
+                  <motion.div
+                    key={project.id}
+                    className="group relative"
+                    layout
+                    initial={isAdditionalProject && showAllProjects ? { opacity: 0, y: 60, scale: 0.9 } : { opacity: 1, y: 0, scale: 1 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={isAdditionalProject ? { opacity: 0, y: -60, scale: 0.9 } : { opacity: 1, y: 0, scale: 1 }}
+                    transition={{ 
+                      duration: 0.4,
+                      delay: isAdditionalProject ? (index - featuredProjects.length) * 0.1 : 0,
+                      ease: "easeOut"
+                    }}
+                    onHoverStart={() => setHoveredProject(project.id)}
+                    onHoverEnd={() => setHoveredProject(null)}
+                    whileHover={{ y: -10, scale: 1.02 }}
+                  >
+                    {/* Main Card */}
+                    <div className="relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-2xl border border-white/20 rounded-3xl overflow-hidden h-full group-hover:border-white/40 transition-all duration-500">
+                      
+                      {/* Animated background gradient */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                      
+                      {/* Glowing border effect */}
+                      <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
+                      
+                      <div className="relative p-8 h-full flex flex-col">
+                        {/* Header with icon and category */}
+                        <div className="flex items-start justify-between mb-6">
+                          <div className="flex items-center space-x-4">
+                            <motion.div
+                              className={`p-4 rounded-2xl bg-gradient-to-br ${project.gradient} shadow-lg ${project.shadowColor} group-hover:shadow-xl transition-all duration-300`}
+                              whileHover={{ rotate: 12, scale: 1.1 }}
+                              transition={{ type: "spring", stiffness: 300 }}
                             >
-                              {tech}
-                            </motion.span>
-                          ))}
+                              <IconComponent className="w-8 h-8 text-white" />
+                            </motion.div>
+                            <span className="text-4xl font-black text-white/20 group-hover:text-white/30 transition-colors duration-300">
+                              {project.id.toString().padStart(2, '0')}
+                            </span>
+                          </div>
+                          
+                          <motion.span
+                            className={`px-4 py-2 text-sm font-bold bg-gradient-to-r ${project.gradient} text-white rounded-full shadow-lg`}
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.3 + index * 0.1 }}
+                          >
+                            {project.category}
+                          </motion.span>
+                        </div>
+
+                        {/* Project Title */}
+                        <div className="mb-4">
+                          <h3 className="text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
+                            {project.title}
+                          </h3>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-gray-300 leading-relaxed mb-6 flex-grow group-hover:text-gray-200 transition-colors duration-300">
+                          {project.description}
+                        </p>
+
+                        {/* Tech Stack with enhanced styling */}
+                        <div className="mb-8">
+                          <div className="flex flex-wrap gap-2">
+                            {project.tech.map((tech, techIndex) => (
+                              <motion.span
+                                key={techIndex}
+                                className="px-3 py-1 text-xs font-semibold text-white bg-white/10 rounded-lg border border-white/20 backdrop-blur-sm hover:bg-white/20 hover:border-white/40 transition-all duration-200"
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.5 + techIndex * 0.1 }}
+                                whileHover={{ scale: 1.05 }}
+                              >
+                                {tech}
+                              </motion.span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Enhanced CTA buttons */}
+                        <div className="flex space-x-3">
+                          <motion.button
+                            onClick={() => handleReadMore(project.id)}
+                            className={`flex-1 bg-gradient-to-r ${project.gradient} hover:shadow-xl ${project.shadowColor} text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 group/btn`}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <span>{project.id === 2 ? "Work in Progress" : "Explore"}</span>
+                            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
+                          </motion.button>
+                          
+                          <motion.button
+                            className="p-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-xl transition-all duration-300 group/icon"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <Github className="w-5 h-5 text-white group-hover/icon:text-gray-300 transition-colors duration-200" />
+                          </motion.button>
                         </div>
                       </div>
 
-                      {/* Enhanced CTA buttons */}
-                      <div className="flex space-x-3">
-                        <motion.button
-                          onClick={() => handleReadMore(project.id)}
-                          className={`flex-1 bg-gradient-to-r ${project.gradient} hover:shadow-xl ${project.shadowColor} text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 group/btn`}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <span>{project.id === 2 ? "Work in Progress" : "Explore"}</span>
-                          <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
-                        </motion.button>
-                        
-                        <motion.button
-                          className="p-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-xl transition-all duration-300 group/icon"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Github className="w-5 h-5 text-white group-hover/icon:text-gray-300 transition-colors duration-200" />
-                        </motion.button>
+                      {/* Animated corner accents */}
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </div>
+
+                    {/* Floating particles effect */}
+                    {hoveredProject === project.id && (
+                      <div className="absolute inset-0 pointer-events-none">
+                        {[...Array(6)].map((_, i) => (
+                          <motion.div
+                            key={i}
+                            className="absolute w-1 h-1 bg-white/60 rounded-full"
+                            initial={{ 
+                              x: Math.random() * 300, 
+                              y: Math.random() * 400,
+                              opacity: 0 
+                            }}
+                            animate={{ 
+                              y: -20, 
+                              opacity: [0, 1, 0],
+                              scale: [0, 1, 0]
+                            }}
+                            transition={{ 
+                              duration: 2, 
+                              repeat: Infinity,
+                              delay: i * 0.2 
+                            }}
+                          />
+                        ))}
                       </div>
-                    </div>
-
-                    {/* Animated corner accents */}
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
-
-                  {/* Floating particles effect */}
-                  {hoveredProject === project.id && (
-                    <div className="absolute inset-0 pointer-events-none">
-                      {[...Array(6)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          className="absolute w-1 h-1 bg-white/60 rounded-full"
-                          initial={{ 
-                            x: Math.random() * 300, 
-                            y: Math.random() * 400,
-                            opacity: 0 
-                          }}
-                          animate={{ 
-                            y: -20, 
-                            opacity: [0, 1, 0],
-                            scale: [0, 1, 0]
-                          }}
-                          transition={{ 
-                            duration: 2, 
-                            repeat: Infinity,
-                            delay: i * 0.2 
-                          }}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </motion.div>
-              );
-            })}
-          </div>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
-        {/* Enhanced Bottom CTA */}
+        {/* Show More/Less Toggle Button */}
         <motion.div
-          className="text-center mt-20"
+          className="text-center mt-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <motion.div
-            className="inline-block p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-white/20 rounded-3xl hover:border-white/40 transition-all duration-500 group"
-            whileHover={{ scale: 1.02, y: -5 }}
+          <motion.button
+            onClick={() => setShowAllProjects(!showAllProjects)}
+            className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-white/20 hover:border-white/40 rounded-2xl p-6 transition-all duration-500 hover:scale-105"
+            whileHover={{ y: -5 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <p className="text-xl text-gray-300 mb-6 group-hover:text-white transition-colors duration-300">
-              Ready to build something amazing together?
-            </p>
-            <motion.button
-              className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold py-4 px-10 rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/30 group/btn"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div className="flex items-center space-x-3">
-                <span className="text-lg">Let's Connect</span>
-                <ExternalLink className="w-5 h-5 group-hover/btn:rotate-12 transition-transform duration-300" />
+            <div className="flex items-center space-x-4">
+              <motion.div
+                className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl"
+                whileHover={{ rotate: 180 }}
+                transition={{ duration: 0.3 }}
+              >
+                {showAllProjects ? (
+                  <Minus className="w-6 h-6 text-white" />
+                ) : (
+                  <Plus className="w-6 h-6 text-white" />
+                )}
+              </motion.div>
+              
+              <div className="text-left">
+                <p className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
+                  {showAllProjects ? "Show Less" : `Discover ${additionalProjects.length} More Projects`}
+                </p>
+                <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                  {showAllProjects 
+                    ? "Back to featured projects" 
+                    : "Explore my complete portfolio"
+                  }
+                </p>
               </div>
-            </motion.button>
-          </motion.div>
+              
+              <motion.div
+                className="text-2xl"
+                animate={{ rotate: showAllProjects ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                🚀
+              </motion.div>
+            </div>
+            
+            {/* Hover glow effect */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </motion.button>
         </motion.div>
+
+        {/* Enhanced Bottom CTA - only show when not expanded */}
+        {!showAllProjects && (
+          <motion.div
+            className="text-center mt-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              className="inline-block p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-white/20 rounded-3xl hover:border-white/40 transition-all duration-500 group"
+              whileHover={{ scale: 1.02, y: -5 }}
+            >
+              <p className="text-xl text-gray-300 mb-6 group-hover:text-white transition-colors duration-300">
+                Ready to build something amazing together?
+              </p>
+              <motion.button
+                className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold py-4 px-10 rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/30 group/btn"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <div className="flex items-center space-x-3">
+                  <span className="text-lg">Let's Connect</span>
+                  <ExternalLink className="w-5 h-5 group-hover/btn:rotate-12 transition-transform duration-300" />
+                </div>
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
       </div>
     </motion.section>
   );
