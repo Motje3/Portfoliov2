@@ -109,16 +109,7 @@ const HomeSection = ({
     },
   };
 
-  const floatVariants = {
-    animate: {
-      y: [0, -20, 0],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
+  
 
   const socialLinks = [
     {
@@ -153,12 +144,7 @@ const HomeSection = ({
     },
   ];
 
-  const skills = [
-    { name: "Cybersecurity", icon: "🛡️" },
-    { name: "Ethical Hacking", icon: "🔍" },
-    { name: "Network Security", icon: "🌐" },
-    { name: "Penetration Testing", icon: "⚡" },
-  ];
+  
 
   return (
     <motion.section

@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, } from "framer-motion";
 import { useRef, useState } from "react";
 
 const AboutSection = ({
@@ -7,7 +7,6 @@ const AboutSection = ({
   sectionsRef: React.MutableRefObject<Record<string, HTMLElement | null>>;
 }) => {
   const ref = useRef<HTMLElement | null>(null);
-  const isInView = useInView(ref, { once: true });
   const [activeTab, setActiveTab] = useState("attributes");
 
   const tabs = [

@@ -310,7 +310,7 @@ const SkillsSection = ({
             { label: "Security Tools", value: "4+", icon: "🔐", desc: "And counting..." },
             { label: "Experience", value: "Error 404 :)", icon: "📅", desc: "Experience not found" },
             { label: "Projects", value: "6", icon: "🚀", desc: "That actually work" },
-          ].map((stat, index) => (
+          ].map((stat, ) => (
             <motion.div
               key={stat.label}
               className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4 text-center hover:bg-white/8 hover:border-white/20 transition-all duration-300 hover:scale-105 group"

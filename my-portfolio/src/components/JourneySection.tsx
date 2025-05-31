@@ -1,5 +1,5 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion,  } from "framer-motion";
+import { useRef, useState,  } from "react";
 
 const JourneySection = ({
   sectionsRef,
@@ -7,7 +7,6 @@ const JourneySection = ({
   sectionsRef: React.MutableRefObject<Record<string, HTMLElement | null>>;
 }) => {
   const ref = useRef<HTMLElement | null>(null);
-  const isInView = useInView(ref, { once: true });
   const [activeTab, setActiveTab] = useState("education");
 
   const journeyData = {
@@ -424,7 +423,7 @@ const JourneySection = ({
               icon: "⚡",
               color: "from-yellow-500 to-orange-500",
             },
-          ].map((stat, index) => (
+          ].map((stat, ) => (
             <motion.div
               key={stat.label}
               className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center hover:bg-white/8 hover:border-white/20 transition-all duration-300 hover:scale-105 group"

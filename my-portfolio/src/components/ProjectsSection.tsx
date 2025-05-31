@@ -1,14 +1,11 @@
 import {
   motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
+  
   AnimatePresence,
 } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  ExternalLink,
   Github,
   ArrowRight,
   Code,
@@ -112,7 +109,6 @@ const ProjectsSection = ({
 
   const featuredProjects = projects.filter((project) => project.featured);
   const additionalProjects = projects.filter((project) => !project.featured);
-  const displayedProjects = showAllProjects ? projects : featuredProjects;
 
   const handleReadMore = (projectId: number) => {
     if (projectId === 1) {

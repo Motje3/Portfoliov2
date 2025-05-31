@@ -1,12 +1,10 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, } from "framer-motion";
+import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const RestaurantQRProjectPage = () => {
   const navigate = useNavigate();
 
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
   const [activeFeature, setActiveFeature] = useState(0);
 
   const features = [

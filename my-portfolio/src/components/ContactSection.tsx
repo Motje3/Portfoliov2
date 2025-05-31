@@ -1,10 +1,9 @@
-import { motion, useInView } from "framer-motion";
+import { motion,  } from "framer-motion";
 import { useRef, useState } from "react";
 
 const ContactSection = ({
   sectionsRef,
   formData,
-  setFormData,
   handleFormSubmit,
   handleInputChange,
 }: {
@@ -23,7 +22,6 @@ const ContactSection = ({
   ) => void;
 }) => {
   const ref = useRef<HTMLElement | null>(null);
-  const isInView = useInView(ref, { once: true });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
