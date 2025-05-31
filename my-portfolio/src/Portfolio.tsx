@@ -18,9 +18,9 @@ import ProjectsSection from "./components/ProjectsSection";
 import ContactSection from "./components/ContactSection";
 
 // EmailJS Configuration
-const EMAILJS_SERVICE_ID = 'service_litxopb';
-const EMAILJS_TEMPLATE_ID = 'template_8n2dx4a';
-const EMAILJS_PUBLIC_KEY = 'YMvOp2ng4G-xwwrvC';
+const EMAILJS_SERVICE_ID = "service_litxopb";
+const EMAILJS_TEMPLATE_ID = "template_8n2dx4a";
+const EMAILJS_PUBLIC_KEY = "YMvOp2ng4G-xwwrvC";
 
 // Initialize EmailJS
 emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -29,6 +29,8 @@ const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
   const [formData, setFormData] = useState({
     Name: "",
     Email: "",
@@ -42,10 +44,13 @@ const Portfolio = () => {
   // Scroll effects and active section tracking
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsHeaderSticky(scrollY > 100);
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      setIsHeaderSticky(scrollY > 0);
 
-      // Find active section
+      // Show scroll-to-top button after scrolling one full page
+      setShowScrollTop(scrollY > window.innerHeight);
+
+      // Find active section (keep your existing code)
       const sections = Object.keys(sectionsRef.current);
       for (let section of sections) {
         const element = sectionsRef.current[section];
@@ -59,7 +64,6 @@ const Portfolio = () => {
         }
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -67,20 +71,20 @@ const Portfolio = () => {
   // Updated handleFormSubmit with EmailJS
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     try {
       // Prepare template parameters for EmailJS
       const templateParams = {
         from_name: formData.Name,
         from_email: formData.Email,
-        phone: formData.Phone || 'Not provided',
+        phone: formData.Phone || "Not provided",
         subject: formData.Subject,
         message: formData.Message,
-        to_name: 'Mohammad',
-        to_email: 'Mohamaadflaha2014@gmail.com'
+        to_name: "Mohammad",
+        to_email: "Mohamaadflaha2014@gmail.com",
       };
 
-      console.log('Sending email with EmailJS...', templateParams);
+      console.log("Sending email with EmailJS...", templateParams);
 
       // Send email via EmailJS
       const result = await emailjs.send(
@@ -90,19 +94,18 @@ const Portfolio = () => {
         EMAILJS_PUBLIC_KEY
       );
 
-      console.log('Email sent successfully:', result);
-      
+      console.log("Email sent successfully:", result);
+
       // Reset form on success
-      setFormData({ 
-        Name: "", 
-        Email: "", 
-        Phone: "", 
-        Subject: "", 
-        Message: "" 
+      setFormData({
+        Name: "",
+        Email: "",
+        Phone: "",
+        Subject: "",
+        Message: "",
       });
 
       return result;
-
     } catch (error) {
       console.error("Error sending email with EmailJS:", error);
       throw error; // Re-throw to let ContactSection handle the error state
@@ -123,10 +126,10 @@ const Portfolio = () => {
     if (element) {
       const headerOffset = 100; // Adjust this value based on your header height
       const elementPosition = element.offsetTop - headerOffset;
-      
+
       window.scrollTo({
         top: elementPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
     setIsMenuOpen(false);
@@ -161,10 +164,11 @@ const Portfolio = () => {
       />
 
       {/* Glassmorphism Footer */}
-      <footer 
+      <footer
         className="relative overflow-hidden border-t border-white/10 px-4 md:px-16 py-16"
         style={{
-          background: 'radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.08) 0%, transparent 50%), #1f2937',
+          background:
+            "radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.08) 0%, transparent 50%), #1f2937",
         }}
       >
         {/* Background blur elements */}
@@ -191,7 +195,8 @@ const Portfolio = () => {
                 </div>
               </div>
               <p className="text-gray-300 leading-relaxed">
-                Made this portfolio to showcase my skills and projects. Feel free to explore my work and get in touch!
+                Made this portfolio to showcase my skills and projects. Feel
+                free to explore my work and get in touch!
               </p>
             </motion.div>
 
@@ -206,9 +211,7 @@ const Portfolio = () => {
               <div className="flex items-center mb-4">
                 <div className="text-3xl mr-3">🔗</div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">
-                    Quick Links
-                  </h3>
+                  <h3 className="text-xl font-bold text-white">Quick Links</h3>
                   <div className="h-1 w-16 bg-gradient-to-r from-green-400 to-cyan-500 rounded-full mt-1"></div>
                 </div>
               </div>
@@ -246,9 +249,7 @@ const Portfolio = () => {
               <div className="flex items-center mb-4">
                 <div className="text-3xl mr-3">📞</div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">
-                    Get In Touch
-                  </h3>
+                  <h3 className="text-xl font-bold text-white">Get In Touch</h3>
                   <div className="h-1 w-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full mt-1"></div>
                 </div>
               </div>
@@ -289,7 +290,7 @@ const Portfolio = () => {
           </div>
 
           {/* Bottom Bar */}
-          <motion.div 
+          <motion.div
             className="border-t border-white/10 pt-8 bg-white/5 backdrop-blur-xl rounded-2xl p-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -302,20 +303,25 @@ const Portfolio = () => {
                 2025 Mohammad Falaha. All rights reserved.
                 <span className="ml-2">🔒</span>
               </p>
-              
             </div>
           </motion.div>
         </div>
 
         {/* Enhanced Scroll to Top Button */}
-        <motion.button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-full flex items-center justify-center shadow-2xl shadow-blue-500/25 transition-all duration-300 hover:scale-110 z-40 backdrop-blur-xl border border-white/20"
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <FiArrowUp size={24} />
-        </motion.button>
+        {showScrollTop && (
+          <motion.button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-full flex items-center justify-center shadow-2xl shadow-blue-500/25 transition-all duration-300 hover:scale-110 z-40 backdrop-blur-xl border border-white/20"
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <FiArrowUp size={24} />
+          </motion.button>
+        )}
       </footer>
     </div>
   );
