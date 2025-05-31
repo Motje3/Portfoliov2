@@ -261,11 +261,30 @@ const HomeSection = ({
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <motion.a
-              href="/Mohammad_CV.pdf"
-              download="Mohammad_Falaha_CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Method 1: Try fetch approach
+                fetch('/Mohammad_CV.pdf')
+                  .then(response => response.blob())
+                  .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'Mohammad_Falaha_CV.pdf';
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(url);
+                  })
+                  .catch(() => {
+                    // Fallback: Direct window.open
+                    window.open('/Mohammad_CV.pdf', '_blank');
+                  });
+              }}
               className="group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-center shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -277,7 +296,7 @@ const HomeSection = ({
                   →
                 </motion.span>
               </div>
-            </motion.a>
+            </motion.button>
 
             <motion.a
               href="mailto:Mohamaadflaha2014@gmail.com"
