@@ -8,15 +8,22 @@ import {
   FiGithub,
 } from "react-icons/fi";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser"; // Add this import
 import Header from "./components/Header";
 import HomeSection from "./components/HomeSection";
 import AboutSection from "./components/AboutSection";
 import JourneySection from "./components/JourneySection";
 import SkillsSection from "./components/SkillsSection";
 import ProjectsSection from "./components/ProjectsSection";
-
-// Import the new glassmorphism contact section
 import ContactSection from "./components/ContactSection";
+
+// EmailJS Configuration
+const EMAILJS_SERVICE_ID = 'service_litxopb';
+const EMAILJS_TEMPLATE_ID = 'template_8n2dx4a';
+const EMAILJS_PUBLIC_KEY = 'YMvOp2ng4G-xwwrvC';
+
+// Initialize EmailJS
+emailjs.init(EMAILJS_PUBLIC_KEY);
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,20 +64,47 @@ const Portfolio = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Updated handleFormSubmit with EmailJS
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbxFRX9Oz3oD9OXD6HhUK7Phl4XEfFUsWPm88LieOn0yiSyb5VVnXHnSnElODNIfXDo0/exec",
-        {
-          method: "POST",
-          body: new FormData(e.target as HTMLFormElement),
-        }
+      // Prepare template parameters for EmailJS
+      const templateParams = {
+        from_name: formData.Name,
+        from_email: formData.Email,
+        phone: formData.Phone || 'Not provided',
+        subject: formData.Subject,
+        message: formData.Message,
+        to_name: 'Mohammad',
+        to_email: 'Mohamaadflaha2014@gmail.com'
+      };
+
+      console.log('Sending email with EmailJS...', templateParams);
+
+      // Send email via EmailJS
+      const result = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
       );
 
-      setFormData({ Name: "", Email: "", Phone: "", Subject: "", Message: "" });
+      console.log('Email sent successfully:', result);
+      
+      // Reset form on success
+      setFormData({ 
+        Name: "", 
+        Email: "", 
+        Phone: "", 
+        Subject: "", 
+        Message: "" 
+      });
+
+      return result;
+
     } catch (error) {
-      console.error("Error sending message", error);
+      console.error("Error sending email with EmailJS:", error);
       throw error; // Re-throw to let ContactSection handle the error state
     }
   };
