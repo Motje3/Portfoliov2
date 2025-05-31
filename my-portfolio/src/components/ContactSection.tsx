@@ -144,7 +144,7 @@ const ContactSection = ({
             Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-green-400">Me</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Ready to collaborate on your next project or discuss cybersecurity opportunities? Let's connect!
+            Building cool stuff or breaking bad code? I’m in — let’s chat.
           </p>
         </motion.div>
 

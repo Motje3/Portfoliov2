@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ExternalLink, Github, ArrowRight, Code, Shield, Database, Plus, Minus, Sparkles } from "lucide-react";
 
 const ProjectsSection = ({
@@ -7,6 +8,7 @@ const ProjectsSection = ({
 }: {
   sectionsRef: React.MutableRefObject<Record<string, HTMLElement | null>>;
 }) => {
+  const navigate = useNavigate(); // Add navigation hook back
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [showAllProjects, setShowAllProjects] = useState(false);
 
@@ -39,7 +41,7 @@ const ProjectsSection = ({
       id: 3,
       title: "Shipment Tracking System",
       description:
-        "Built a mobile app that turns your phone into a package-scanning wizard. Scan, track, and watch shipments move across the world from a slick dashboard — because wondering 'where's my stuff?' is so last decade.",
+        "Built a mobile app that makes your phone the ultimate package whisperer. Scan barcodes, track shipments across the globe, and watch everything unfold on a dashboard that's cleaner than your inbox will ever be. Because life's too short to wonder where your stuff is.",
       tech: ["React Native", "C#", "PostgreSQL", "Tailwind"],
       category: "Mobile + Backend",
       icon: Code,
@@ -50,36 +52,36 @@ const ProjectsSection = ({
     // Additional projects (hidden initially)
     {
       id: 4,
-      title: "Network Security Monitor",
+      title: "Warehouse-API",
       description:
-        "Real-time network monitoring dashboard that keeps an eye on your digital perimeter. Think security guard, but for packets.",
-      tech: ["Python", "Flask", "Wireshark", "D3.js"],
-      category: "Cyber Security",
-      icon: Shield,
+        "Python-based API built and tested a logistics API for CargoHub — complete with PDF generation, deployment scripts, and enough test coverage to make bugs sweat. Designed to keep warehouse operations smooth and devs stress-free.",
+      tech: ["Python", "Flask"],
+      category: "Backend",
+      icon: Database,
       gradient: "from-orange-500 via-red-500 to-pink-500",
       shadowColor: "shadow-orange-500/20",
       featured: false,
     },
     {
       id: 5,
-      title: "Automated Backup System",
+      title: "OfficeCalendar",
       description:
-        "Because losing data is like forgetting your keys — embarrassing and completely avoidable. Smart backups that actually work.",
-      tech: ["C#", "PowerShell", "Azure", "SQL Server"],
-      category: "System Admin",
-      icon: Database,
+        "A full-stack web app built for managing office attendance and scheduling. Developed with React on the frontend and .NET on the backend, it helps teams coordinate who's in, who's out, and when — no more guessing games.",
+      tech: ["React", ".NET", "C#", "SQL Server"],
+      category: "Full-Stack",
+      icon: Code,
       gradient: "from-green-500 via-teal-500 to-blue-500",
       shadowColor: "shadow-green-500/20",
       featured: false,
     },
     {
       id: 6,
-      title: "IoT Home Security Hub",
+      title: "Phishing Email Detection System",
       description:
-        "Connected home security that's smarter than a smart doorbell. Sensors, alerts, and peace of mind in one package.",
-      tech: ["Arduino", "Python", "MQTT", "React"],
-      category: "IoT",
-      icon: Code,
+        "Building a bot to read your emails so you don't get tricked by a prince asking for money. It sniffs out phishing attempts using NLP and machine learning, flags sketchy links, and saves you from becoming the next headline in a breach report.",
+      tech: ["Python", "Scikit-learn", "NLTK", "Flask", "SMTP", "Docker"],
+      category: "AI/ML Security",
+      icon: Shield,
       gradient: "from-purple-500 via-violet-500 to-indigo-500",
       shadowColor: "shadow-purple-500/20",
       featured: false,
@@ -92,9 +94,9 @@ const ProjectsSection = ({
 
   const handleReadMore = (projectId: number) => {
     if (projectId === 1) {
-      console.log("Navigate to project 1");
+      navigate("/project-1");
     } else {
-      console.log(`Navigate to project ${projectId}`);
+      console.log(`Navigate to project ${projectId} - route not configured yet`);
     }
   };
 
@@ -159,37 +161,161 @@ const ProjectsSection = ({
           >
             <Sparkles className="w-4 h-4 text-blue-400" />
             <span className="text-sm text-gray-300">
-              {showAllProjects ? `Showing all ${projects.length}` : `${featuredProjects.length} featured`} projects
+              Showing {showAllProjects ? projects.length : featuredProjects.length} of {projects.length} projects
             </span>
           </motion.div>
         </motion.div>
 
         {/* Enhanced Projects Grid */}
         <div className="max-w-7xl mx-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={showAllProjects ? 'all' : 'featured'}
-              className="grid lg:grid-cols-3 md:grid-cols-2 gap-8"
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 1 }}
-              transition={{ duration: 0.1 }}
-            >
-              {displayedProjects.map((project, index) => {
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
+            {/* Featured Projects - Always visible */}
+            {featuredProjects.map((project, index) => {
+              const IconComponent = project.icon;
+              return (
+                <motion.div
+                  key={project.id}
+                  className="group relative"
+                  onHoverStart={() => setHoveredProject(project.id)}
+                  onHoverEnd={() => setHoveredProject(null)}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                >
+                  {/* Main Card */}
+                  <div className="relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-2xl border border-white/20 rounded-3xl overflow-hidden h-full group-hover:border-white/40 transition-all duration-500">
+                    
+                    {/* Animated background gradient */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                    
+                    {/* Glowing border effect */}
+                    <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
+                    
+                    <div className="relative p-8 h-full flex flex-col">
+                      {/* Header with icon and category */}
+                      <div className="flex items-start justify-between mb-6">
+                        <div className="flex items-center space-x-4">
+                          <motion.div
+                            className={`p-4 rounded-2xl bg-gradient-to-br ${project.gradient} shadow-lg ${project.shadowColor} group-hover:shadow-xl transition-all duration-300`}
+                            whileHover={{ rotate: 12, scale: 1.1 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
+                            <IconComponent className="w-8 h-8 text-white" />
+                          </motion.div>
+                          <span className="text-4xl font-black text-white/20 group-hover:text-white/30 transition-colors duration-300">
+                            {project.id.toString().padStart(2, '0')}
+                          </span>
+                        </div>
+                        
+                        <motion.span
+                          className={`px-4 py-2 text-sm font-bold bg-gradient-to-r ${project.gradient} text-white rounded-full shadow-lg`}
+                          initial={{ opacity: 0, x: 20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.3 + index * 0.1 }}
+                        >
+                          {project.category}
+                        </motion.span>
+                      </div>
+
+                      {/* Project Title */}
+                      <div className="mb-4">
+                        <h3 className="text-3xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
+                          {project.title}
+                        </h3>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-gray-300 leading-relaxed mb-6 flex-grow group-hover:text-gray-200 transition-colors duration-300">
+                        {project.description}
+                      </p>
+
+                      {/* Tech Stack with enhanced styling */}
+                      <div className="mb-8">
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.map((tech, techIndex) => (
+                            <span
+                              key={`${project.id}-${tech}-${techIndex}`}
+                              className="px-3 py-1 text-xs font-semibold text-white bg-white/10 rounded-lg border border-white/20 backdrop-blur-sm hover:bg-white/20 hover:border-white/40 transition-all duration-200"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Enhanced CTA buttons */}
+                      <div className="flex space-x-3">
+                        <motion.button
+                          onClick={() => handleReadMore(project.id)}
+                          className={`flex-1 bg-gradient-to-r ${project.gradient} hover:shadow-xl ${project.shadowColor} text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 group/btn`}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <span>
+                            {project.id === 2 ? "Work in Progress" : 
+                             project.id === 6 ? "Details Coming Soon" : 
+                             "Explore"}
+                          </span>
+                          <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
+                        </motion.button>
+                        
+                        <motion.button
+                          className="p-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-xl transition-all duration-300 group/icon"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Github className="w-5 h-5 text-white group-hover/icon:text-gray-300 transition-colors duration-200" />
+                        </motion.button>
+                      </div>
+                    </div>
+
+                    {/* Animated corner accents */}
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+
+                  {/* Floating particles effect */}
+                  {hoveredProject === project.id && (
+                    <div className="absolute inset-0 pointer-events-none">
+                      {[...Array(6)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          className="absolute w-1 h-1 bg-white/60 rounded-full"
+                          initial={{ 
+                            x: Math.random() * 300, 
+                            y: Math.random() * 400,
+                            opacity: 0 
+                          }}
+                          animate={{ 
+                            y: -20, 
+                            opacity: [0, 1, 0],
+                            scale: [0, 1, 0]
+                          }}
+                          transition={{ 
+                            duration: 2, 
+                            repeat: Infinity,
+                            delay: i * 0.2 
+                          }}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
+
+            {/* Additional Projects - Expandable */}
+            <AnimatePresence>
+              {showAllProjects && additionalProjects.map((project, index) => {
                 const IconComponent = project.icon;
-                const isAdditionalProject = !project.featured;
-                
                 return (
                   <motion.div
                     key={project.id}
                     className="group relative"
-                    layout
-                    initial={isAdditionalProject && showAllProjects ? { opacity: 0, y: 60, scale: 0.9 } : { opacity: 1, y: 0, scale: 1 }}
+                    initial={{ opacity: 0, y: 50, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={isAdditionalProject ? { opacity: 0, y: -60, scale: 0.9 } : { opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -50, scale: 0.9 }}
                     transition={{ 
-                      duration: 0.4,
-                      delay: isAdditionalProject ? (index - featuredProjects.length) * 0.1 : 0,
+                      duration: 0.5,
+                      delay: index * 0.1,
                       ease: "easeOut"
                     }}
                     onHoverStart={() => setHoveredProject(project.id)}
@@ -247,16 +373,12 @@ const ProjectsSection = ({
                         <div className="mb-8">
                           <div className="flex flex-wrap gap-2">
                             {project.tech.map((tech, techIndex) => (
-                              <motion.span
-                                key={techIndex}
+                              <span
+                                key={`${project.id}-${tech}-${techIndex}`}
                                 className="px-3 py-1 text-xs font-semibold text-white bg-white/10 rounded-lg border border-white/20 backdrop-blur-sm hover:bg-white/20 hover:border-white/40 transition-all duration-200"
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 0.5 + techIndex * 0.1 }}
-                                whileHover={{ scale: 1.05 }}
                               >
                                 {tech}
-                              </motion.span>
+                              </span>
                             ))}
                           </div>
                         </div>
@@ -269,7 +391,11 @@ const ProjectsSection = ({
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
-                            <span>{project.id === 2 ? "Work in Progress" : "Explore"}</span>
+                            <span>
+                              {project.id === 2 ? "Work in Progress" : 
+                               project.id === 6 ? "Details Coming Soon" : 
+                               "Explore"}
+                            </span>
                             <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
                           </motion.button>
                           
@@ -317,8 +443,8 @@ const ProjectsSection = ({
                   </motion.div>
                 );
               })}
-            </motion.div>
-          </AnimatePresence>
+            </AnimatePresence>
+          </div>
         </div>
 
         {/* Show More/Less Toggle Button */}
@@ -373,36 +499,6 @@ const ProjectsSection = ({
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </motion.button>
         </motion.div>
-
-        {/* Enhanced Bottom CTA - only show when not expanded */}
-        {!showAllProjects && (
-          <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <motion.div
-              className="inline-block p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-white/20 rounded-3xl hover:border-white/40 transition-all duration-500 group"
-              whileHover={{ scale: 1.02, y: -5 }}
-            >
-              <p className="text-xl text-gray-300 mb-6 group-hover:text-white transition-colors duration-300">
-                Ready to build something amazing together?
-              </p>
-              <motion.button
-                className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold py-4 px-10 rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/30 group/btn"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="flex items-center space-x-3">
-                  <span className="text-lg">Let's Connect</span>
-                  <ExternalLink className="w-5 h-5 group-hover/btn:rotate-12 transition-transform duration-300" />
-                </div>
-              </motion.button>
-            </motion.div>
-          </motion.div>
-        )}
       </div>
     </motion.section>
   );
