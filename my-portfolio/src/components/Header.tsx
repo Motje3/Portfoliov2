@@ -31,15 +31,15 @@ const Header = ({
         {/* Logo */}
         <motion.a 
           href="" 
-          className="relative group"
+          className="relative group flex-shrink-0"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
-              <span className="text-white font-bold text-lg">M</span>
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
+              <span className="text-white font-bold text-sm sm:text-lg">M</span>
             </div>
-            <span className="text-2xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
+            <span className="text-lg sm:text-2xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300 whitespace-nowrap">
               Mohammad<span className="text-blue-400">.</span>
             </span>
           </div>
@@ -47,7 +47,7 @@ const Header = ({
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden relative w-10 h-10 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+          className="md:hidden relative w-10 h-10 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 flex-shrink-0"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <div className="relative w-6 h-6 flex flex-col items-center justify-center">
@@ -102,7 +102,7 @@ const Header = ({
         <motion.nav
           className={`${
             isMenuOpen ? "flex" : "hidden"
-          } md:hidden absolute top-full left-4 right-4 mt-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 flex-col space-y-3 shadow-2xl`}
+          } md:hidden absolute top-full left-4 right-4 mt-4 bg-gray-900 border border-white/20 rounded-3xl p-6 flex-col space-y-3 shadow-2xl`}
           initial={{ opacity: 0, y: -20, scale: 0.95 }}
           animate={{ 
             opacity: isMenuOpen ? 1 : 0, 
