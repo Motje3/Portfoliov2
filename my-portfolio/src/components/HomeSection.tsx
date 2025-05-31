@@ -152,7 +152,7 @@ const HomeSection = ({
         if (el) sectionsRef.current.home = el;
         ref.current = el;
       }}
-      className="min-h-screen flex items-center px-4 md:px-16 relative overflow-hidden"
+      className="min-h-screen flex items-center px-4 md:px-16 pt-20 sm:pt-24 relative overflow-hidden"
       id="home"
       style={{
         background:
@@ -300,7 +300,7 @@ const HomeSection = ({
           </motion.div>
 
           {/* Social Links */}
-          <motion.div variants={itemVariants} className="flex space-x-4">
+          <motion.div variants={itemVariants} className="flex space-x-4 pb-8 sm:pb-4">
             {socialLinks.map((social, index) => (
               <motion.a
                 key={social.name}
@@ -474,9 +474,9 @@ const HomeSection = ({
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - Hidden on mobile */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 hidden sm:block"
         animate={{
           y: [0, 10, 0],
         }}
