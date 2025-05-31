@@ -191,8 +191,7 @@ const Portfolio = () => {
                 </div>
               </div>
               <p className="text-gray-300 leading-relaxed">
-                IT Student & Cybersecurity Enthusiast passionate about ethical
-                hacking, penetration testing, and securing digital systems.
+                Made this portfolio to showcase my skills and projects. Feel free to explore my work and get in touch!
               </p>
             </motion.div>
 

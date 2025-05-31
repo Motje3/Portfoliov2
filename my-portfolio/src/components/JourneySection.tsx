@@ -414,13 +414,13 @@ const JourneySection = ({
             },
             {
               label: "Certifications",
-              value: "2+",
+              value: "4+",
               icon: "🏆",
               color: "from-green-500 to-emerald-500",
             },
             {
               label: "Skills Acquired",
-              value: "25+",
+              value: "Many",
               icon: "⚡",
               color: "from-yellow-500 to-orange-500",
             },
