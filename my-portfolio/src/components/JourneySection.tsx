@@ -21,12 +21,12 @@ const JourneySection = ({
           title: "Informatica",
           institution: "Hogeschool Rotterdam",
           description:
-            "Currently pursuing my degree in Computer Science with a focus on software development and cybersecurity. Specialized coursework in network security, ethical hacking, and secure coding practices.",
+            "Started out just wanting to understand how code actually works… One thing led to another and now I'm more into hacking programs then actually building them. Here, I’ve gotten really good at software development and picked up the fundamentals of networking, databases, and cybersecurity.",
           highlights: [
             "Software Development",
-            "Cybersecurity Focus",
-            "Network Security",
-            "Ethical Hacking",
+            "Cybersecurity",
+            "Networking",
+            "Databases",
           ],
           status: "ongoing",
           gpa: "8.2/10",
@@ -36,7 +36,7 @@ const JourneySection = ({
           title: "HAVO Diploma",
           institution: "Wolfert Tweetalig",
           description:
-            "This is where I started my first years in the Netherlands and focused on improving my Dutch and English through daily lessons and presentations. I also relearned subjects like math and science, which I had studied before, helping me adapt to the Dutch education system.",
+            "My origin story in the Netherlands — learned to juggle Dutch and English, presentations, and the occasional math headache. Relearned subjects, survived group projects, and mastered the art of adapting fast.",
           highlights: [
             "Improved Dutch & English",
             "Adapted to Dutch School System",

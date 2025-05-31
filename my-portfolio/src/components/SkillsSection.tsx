@@ -269,7 +269,7 @@ const SkillsSection = ({
                            skill.name === "Problem Solving" ? "Breaking problems into smaller, Googleable pieces" :
                            skill.name === "Team Collaboration" ? "Survives group projects (and even enjoys them)" :
                            skill.name === "Fast Learner" ? "Always curious how things work" :
-                           skill.name === "Communication" ? "Can explain why the code broke without crying" :
+                           skill.name === "Communication" ? "Actively listening made communication a lot easier" :
                            skill.level >= 90 ? "Master level expertise" :
                            skill.level >= 80 ? "Professional proficiency" :
                            skill.level >= 70 ? "Solid understanding" :
