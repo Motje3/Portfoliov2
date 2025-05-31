@@ -88,7 +88,7 @@ const AboutSection = ({
           value: "Advanced",
           icon: "⚡",
           description:
-            "Fluent in .NET and probably dreaming in curly braces at this point.",
+            "Building solid APIs, handling requests, and structuring logic? C# is the way.",
         },
         {
           title: "Python",
@@ -242,7 +242,7 @@ const AboutSection = ({
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
-                    Who I Am?
+                    Who Am I?
                   </h3>
                   <div className="h-1 w-32 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mt-2"></div>
                 </div>

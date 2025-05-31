@@ -1,5 +1,6 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const SkillsSection = ({
   sectionsRef,
@@ -8,111 +9,91 @@ const SkillsSection = ({
 }) => {
   const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, { once: true });
+  const [currentCategory, setCurrentCategory] = useState(0);
   const [animatedValues, setAnimatedValues] = useState<{
     [key: string]: number;
   }>({});
+
+  // Skill level mappings
+  const getSkillLevel = (percentage: number) => {
+    if (percentage >= 90) return { label: "Expert", color: "from-emerald-400 to-green-500", icon: "🔥" };
+    if (percentage >= 80) return { label: "Pro", color: "from-blue-400 to-cyan-500", icon: "⭐" };
+    if (percentage >= 70) return { label: "Good", color: "from-purple-400 to-violet-500", icon: "💪" };
+    if (percentage >= 60) return { label: "Learning", color: "from-yellow-400 to-orange-500", icon: "📚" };
+    return { label: "Beginner", color: "from-gray-400 to-gray-500", icon: "🌱" };
+  };
 
   const skillCategories = [
     {
       title: "Programming Languages",
       icon: "💻",
+      description: "Languages I use to make computers do cool stuff",
       skills: [
-        { name: "C#", level: 90, color: "from-purple-500 to-violet-600" },
-        { name: "Python", level: 85, color: "from-blue-500 to-cyan-500" },
-        {
-          name: "JavaScript",
-          level: 80,
-          color: "from-yellow-400 to-orange-500",
-        },
-        { name: "SQL", level: 75, color: "from-green-500 to-emerald-600" },
+        { name: "C#", level: 90 },
+        { name: "Python", level: 70 },
+        { name: "JavaScript", level: 70 },
+        { name: "AI Language", level: 85 },
       ],
     },
     {
       title: "Cybersecurity Tools",
       icon: "🛡️",
+      description: "My arsenal for exploring the digital frontier",
       skills: [
-        { name: "Kali Linux", level: 85, color: "from-red-500 to-pink-600" },
-        { name: "Wireshark", level: 80, color: "from-blue-600 to-indigo-700" },
-        { name: "Nmap", level: 90, color: "from-gray-600 to-gray-800" },
-        { name: "Metasploit", level: 75, color: "from-red-600 to-rose-700" },
-        { name: "Burp Suite", level: 70, color: "from-orange-500 to-red-600" },
+        { name: "Kali Linux", level: 70 },
+        { name: "Wireshark", level: 60 },
+        { name: "Nmap", level: 60 },
+        { name: "Metasploit", level: 60 },
+        { name: "Burp Suite", level: 60 },
       ],
     },
     {
       title: "Frameworks & Technologies",
       icon: "⚡",
+      description: "The tools that make magic happen",
       skills: [
-        { name: "React", level: 85, color: "from-cyan-400 to-blue-500" },
-        { name: "FastAPI", level: 80, color: "from-green-400 to-teal-600" },
-        { name: "Docker", level: 75, color: "from-blue-500 to-blue-700" },
-        { name: "Git", level: 90, color: "from-orange-500 to-red-500" },
+        { name: "React", level: 85 },
+        { name: "OpenAPI / Swagger", level: 75 },
+        { name: "SIEM tools (Wazuh)", level: 65 },
+        { name: "Git", level: 90 },
       ],
     },
     {
       title: "Professional Skills",
       icon: "🎯",
+      description: "The soft skills that aren't so soft",
       skills: [
-        {
-          name: "Problem Solving",
-          level: 95,
-          color: "from-purple-500 to-pink-500",
-        },
-        {
-          name: "Team Collaboration",
-          level: 90,
-          color: "from-green-500 to-blue-500",
-        },
-        {
-          name: "Project Management",
-          level: 80,
-          color: "from-yellow-500 to-orange-500",
-        },
-        {
-          name: "Communication",
-          level: 85,
-          color: "from-indigo-500 to-purple-600",
-        },
+        { name: "Problem Solving", level: 95 },
+        { name: "Team Collaboration", level: 90 },
+        { name: "Fast Learner", level: 85 },
+        { name: "Communication", level: 85 },
       ],
     },
   ];
 
-  // Animate skill bars when section comes into view
+  // Animate skill bars when section comes into view or category changes
   useEffect(() => {
     if (isInView) {
       const timer = setTimeout(() => {
         const newValues: { [key: string]: number } = {};
-        skillCategories.forEach((category) => {
-          category.skills.forEach((skill) => {
-            newValues[skill.name] = skill.level;
-          });
+        skillCategories[currentCategory].skills.forEach((skill) => {
+          newValues[skill.name] = skill.level;
         });
         setAnimatedValues(newValues);
-      }, 500);
+      }, 150);
       return () => clearTimeout(timer);
     }
-  }, [isInView]);
+  }, [isInView, currentCategory]);
 
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+  const nextCategory = () => {
+    setCurrentCategory((prev) => (prev + 1) % skillCategories.length);
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
+  const prevCategory = () => {
+    setCurrentCategory((prev) => (prev - 1 + skillCategories.length) % skillCategories.length);
   };
+
+  const currentSkillCategory = skillCategories[currentCategory];
 
   return (
     <motion.section
@@ -120,7 +101,7 @@ const SkillsSection = ({
         if (el) sectionsRef.current.skills = el;
         ref.current = el;
       }}
-      className="min-h-screen px-4 md:px-16 py-20 relative overflow-hidden bg-gray-900"
+      className="min-h-screen px-4 md:px-16 py-20 relative overflow-hidden"
       id="skills"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -128,18 +109,18 @@ const SkillsSection = ({
       viewport={{ once: true }}
       style={{
         background:
-          "radial-gradient(circle at 75% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 50%), radial-gradient(circle at 25% 75%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), #111827",
+          "radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.25) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.2) 0%, transparent 50%), linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)",
       }}
     >
       {/* Floating background elements */}
-      <div className="absolute top-32 right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-32 left-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-cyan-500/8 rounded-full blur-3xl animate-pulse delay-700"></div>
+      <div className="absolute top-32 right-20 w-80 h-80 bg-blue-400/15 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-32 left-20 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 max-w-5xl mx-auto">
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -152,143 +133,196 @@ const SkillsSection = ({
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            The stuff I know, the tools I use, and the tech I argue with at 2AM.
+            Navigate through my arsenal of tech skills and tools
           </p>
         </motion.div>
 
-        {/* Skills Grid */}
-        <motion.div
-          className="grid lg:grid-cols-2 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={category.title}
-              variants={cardVariants}
-              className="group"
-            >
-              {/* Category Card */}
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 h-full hover:bg-white/8 hover:border-white/20 transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-blue-500/10">
-                {/* Category Header */}
-                <div className="flex items-center mb-8">
-                  <div className="text-4xl mr-4 group-hover:scale-110 transition-transform duration-300">
-                    {category.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
-                      {category.title}
-                    </h3>
-                    <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mt-2"></div>
-                  </div>
-                </div>
+        {/* Category Navigation */}
+        <div className="flex justify-center mb-8">
+          <div className="flex items-center space-x-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-2">
+            {skillCategories.map((category, index) => (
+              <button
+                key={category.title}
+                onClick={() => setCurrentCategory(index)}
+                className={`px-4 py-2 rounded-xl transition-all duration-300 flex items-center space-x-2 ${
+                  currentCategory === index
+                    ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                <span className="text-lg">{category.icon}</span>
+                <span className="hidden md:inline font-medium">{category.title}</span>
+              </button>
+            ))}
+          </div>
+        </div>
 
-                {/* Skills List */}
-                <div className="space-y-6">
-                  {category.skills.map((skill, skillIndex) => (
+        {/* Main Skills Display */}
+        <div className="relative">
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevCategory}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 rounded-full p-3 transition-all duration-300 hover:scale-110 group"
+          >
+            <ChevronLeft className="w-6 h-6 text-white group-hover:text-blue-400" />
+          </button>
+
+          <button
+            onClick={nextCategory}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 rounded-full p-3 transition-all duration-300 hover:scale-110 group"
+          >
+            <ChevronRight className="w-6 h-6 text-white group-hover:text-blue-400" />
+          </button>
+
+          {/* Skills Card */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentCategory}
+              initial={{ opacity: 0, x: 100, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -100, scale: 0.95 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/8 hover:border-white/20 transition-all duration-500"
+            >
+              {/* Category Header */}
+              <div className="text-center mb-8">
+                <div className="text-6xl mb-4 animate-bounce">
+                  {currentSkillCategory.icon}
+                </div>
+                <h3 className="text-3xl font-bold text-white mb-2">
+                  {currentSkillCategory.title}
+                </h3>
+                <p className="text-gray-400 text-lg">
+                  {currentSkillCategory.description}
+                </p>
+                <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mt-4"></div>
+              </div>
+
+              {/* Skills Grid */}
+              <div className="grid md:grid-cols-2 gap-6">
+                {currentSkillCategory.skills.map((skill, index) => {
+                  const skillLevel = getSkillLevel(skill.level);
+                  return (
                     <motion.div
                       key={skill.name}
-                      className="relative"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{
-                        duration: 0.6,
-                        delay: categoryIndex * 0.1 + skillIndex * 0.1,
-                      }}
-                      viewport={{ once: true }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      className="group"
                     >
-                      {/* Skill Name and Percentage */}
-                      <div className="flex justify-between items-center mb-3">
-                        <span className="font-semibold text-gray-200 group-hover:text-white transition-colors duration-300">
-                          {skill.name}
-                        </span>
-                        <span className="text-sm font-bold text-blue-400 bg-blue-500/20 px-3 py-1 rounded-full border border-blue-500/30">
-                          {skill.level}%
-                        </span>
-                      </div>
+                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/8 hover:border-white/20 transition-all duration-300 hover:scale-105">
+                        {/* Skill Header */}
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="font-bold text-white text-lg group-hover:text-blue-300 transition-colors duration-300">
+                            {skill.name}
+                          </span>
+                        </div>
 
-                      {/* Progress Bar Container */}
-                      <div className="relative h-3 bg-white/5 rounded-full border border-white/10 overflow-hidden">
-                        {/* Background glow */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse"></div>
+                        {/* Visual Progress Indicator */}
+                        <div className="relative">
+                          {/* Progress Dots */}
+                          <div className="flex space-x-2 mb-3">
+                            {[1, 2, 3, 4, 5].map((dot) => (
+                              <motion.div
+                                key={dot}
+                                className={`w-4 h-4 rounded-full transition-all duration-500 ${
+                                  dot <= Math.ceil(skill.level / 20)
+                                    ? `bg-gradient-to-r ${skillLevel.color} shadow-lg`
+                                    : 'bg-white/20'
+                                }`}
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ delay: index * 0.05 + dot * 0.05 }}
+                                whileHover={{ scale: 1.2 }}
+                              />
+                            ))}
+                          </div>
 
-                        {/* Progress Bar */}
-                        <motion.div
-                          className={`h-full bg-gradient-to-r ${skill.color} rounded-full relative overflow-hidden`}
-                          initial={{ width: 0 }}
-                          animate={{
-                            width: isInView
-                              ? `${animatedValues[skill.name] || 0}%`
-                              : 0,
-                          }}
-                          transition={{
-                            duration: 1.5,
-                            delay: categoryIndex * 0.2 + skillIndex * 0.1,
-                            ease: "easeOut",
-                          }}
-                        >
-                          {/* Shimmer effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 animate-pulse"></div>
+                          {/* Progress Bar */}
+                          <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                            <motion.div
+                              className={`h-full bg-gradient-to-r ${skillLevel.color} rounded-full relative`}
+                              initial={{ width: 0 }}
+                              animate={{ width: `${animatedValues[skill.name] || 0}%` }}
+                              transition={{ duration: 0.8, delay: index * 0.05, ease: "easeOut" }}
+                            >
+                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
+                            </motion.div>
+                          </div>
+                        </div>
 
-                          {/* Glow effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm"></div>
-                        </motion.div>
-                      </div>
-
-                      {/* Skill level indicator dots */}
-                      <div className="flex justify-between mt-2 px-1">
-                        {[20, 40, 60, 80].map((threshold) => (
-                          <div
-                            key={threshold}
-                            className={`w-1 h-1 rounded-full transition-all duration-500 ${
-                              (animatedValues[skill.name] || 0) >= threshold
-                                ? "bg-blue-400 shadow-sm shadow-blue-400"
-                                : "bg-white/20"
-                            }`}
-                          ></div>
-                        ))}
+                        {/* Skill Description */}
+                        <div className="text-xs text-gray-500 mt-2 text-right">
+                          {skill.name === "C#" ? "Built stuff that works — and scales" :
+                           skill.name === "Python" ? "Fluent, but still occasionally argues with errors" :
+                           skill.name === "JavaScript" ? "Fluent, but still occasionally argues with errors" :
+                           skill.name === "AI Language" ? "I know how to talk to AI (it mostly listens)" :
+                           skill.name === "Kali Linux" ? "My trusty digital companion" :
+                           skill.name === "Wireshark" ? "Network packets tell interesting stories" :
+                           skill.name === "Nmap" ? "Knock knock, who's there?" :
+                           skill.name === "Metasploit" ? "With great power comes great responsibility" :
+                           skill.name === "Burp Suite" ? "Web apps have secrets, I find them" :
+                           skill.name === "React" ? "Couldn't deal with HTML and CSS anymore" :
+                           skill.name === "OpenAPI / Swagger" ? "APIs that actually make sense" :
+                           skill.name === "SIEM tools (Wazuh)" ? "Logs don't lie" :
+                           skill.name === "Git" ? "The tool that lets me confidently break things…" :
+                           skill.name === "Problem Solving" ? "Breaking problems into smaller, Googleable pieces" :
+                           skill.name === "Team Collaboration" ? "Survives group projects (and even enjoys them)" :
+                           skill.name === "Fast Learner" ? "Always curious how things work" :
+                           skill.name === "Communication" ? "Can explain why the code broke without crying" :
+                           skill.level >= 90 ? "Master level expertise" :
+                           skill.level >= 80 ? "Professional proficiency" :
+                           skill.level >= 70 ? "Solid understanding" :
+                           skill.level >= 60 ? "Actively learning" :
+                           "Getting started"}
+                        </div>
                       </div>
                     </motion.div>
-                  ))}
-                </div>
-
-                
-
-                {/* Hover glow effect */}
-                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-cyan-500/5"></div>
-                </div>
+                  );
+                })}
               </div>
             </motion.div>
-          ))}
-        </motion.div>
+          </AnimatePresence>
+        </div>
 
-        {/* Bottom Stats Section */}
+        {/* Progress Indicator */}
+        <div className="flex justify-center mt-8 space-x-2">
+          {skillCategories.map((_, index) => (
+            <div
+              key={index}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                currentCategory === index ? 'w-8 bg-blue-500' : 'w-2 bg-white/30'
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Bottom Stats */}
         <motion.div
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
           {[
-            { label: "Programming Languages", value: "4", icon: "💻" },
-            { label: "Security Tools", value: "10+", icon: "🔐" },
-            { label: "Years Experience", value: "Error 404 :)", icon: "📅" },
-            { label: "Projects Completed", value: "6", icon: "🚀" },
+            { label: "Languages", value: "3 + 1", icon: "💻", desc: "Talking to AI doesn't really count" },
+            { label: "Security Tools", value: "4+", icon: "🔐", desc: "And counting..." },
+            { label: "Experience", value: "Error 404 :)", icon: "📅", desc: "Experience not found" },
+            { label: "Projects", value: "6", icon: "🚀", desc: "That actually work" },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center hover:bg-white/8 hover:border-white/20 transition-all duration-300 hover:scale-105"
-              whileHover={{ y: -5 }}
+              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4 text-center hover:bg-white/8 hover:border-white/20 transition-all duration-300 hover:scale-105 group"
+              whileHover={{ y: -3 }}
+              title={stat.desc}
             >
-              <div className="text-3xl mb-2">{stat.icon}</div>
-              <div className="text-2xl font-bold text-white mb-1">
-                {stat.value}
+              <div className="text-2xl mb-1">{stat.icon}</div>
+              <div className="text-lg font-bold text-white">{stat.value}</div>
+              <div className="text-xs text-gray-400">{stat.label}</div>
+              <div className="text-xs text-gray-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {stat.desc}
               </div>
-              <div className="text-sm text-gray-400">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

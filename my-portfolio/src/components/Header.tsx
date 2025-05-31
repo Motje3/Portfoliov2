@@ -30,7 +30,7 @@ const Header = ({
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         {/* Logo */}
         <motion.a 
-          href="Me" 
+          href="" 
           className="relative group"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
