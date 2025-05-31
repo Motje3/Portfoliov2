@@ -262,7 +262,10 @@ const HomeSection = ({
             className="flex flex-col sm:flex-row gap-4"
           >
             <motion.a
-              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+              href="/Mohammad_CV.pdf"
+              download="Mohammad_Falaha_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-center shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -283,7 +286,9 @@ const HomeSection = ({
               whileTap={{ scale: 0.95 }}
             >
               <div className="flex items-center justify-center space-x-2">
-                <span>💬</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
                 <span>Let's Talk</span>
               </div>
             </motion.a>
