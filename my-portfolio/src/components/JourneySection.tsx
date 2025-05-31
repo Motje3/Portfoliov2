@@ -57,7 +57,7 @@ const JourneySection = ({
           title: "Fleet Driver",
           institution: "Fleetport",
           description:
-            "Responsible for safe and timely vehicle deliveries to customers. Developed exceptional attention to detail, time management skills, and customer service excellence.",
+            "Delivering cars to customers safely and on time. Learned how to plan routes, stay calm in traffic, and deal with all kinds of people — from the super chill to the slightly stressed. Got really good at managing time, staying organized, and making sure everything ran smoothly.",
           highlights: [
             "Time Management",
             "Customer Service",
@@ -72,7 +72,7 @@ const JourneySection = ({
           title: "Customer Service & Help Desk",
           institution: "Amazon",
           description:
-            "Provided technical support and customer assistance, resolving complex issues and troubleshooting problems. Enhanced communication and problem-solving abilities.",
+            "Helped customers through everything from “my package disappeared” to “why won’t this thing turn on?” Became a pro at staying calm, solving weird tech problems, and turning frustration into 5-star reviews. Also the go-to helpdesk for teammates when tech acted up. Learned to communicate clearly, think fast, and type even faster.",
           highlights: [
             "Technical Support",
             "Problem Solving",
@@ -87,7 +87,7 @@ const JourneySection = ({
           title: "Winkelmedewerker",
           institution: "Dirk",
           description:
-            "Worked in retail environment developing teamwork skills and efficient communication. Contributed to positive work atmosphere and team collaboration.",
+            "Handled day-to-day tasks in a fast-paced store, staying organized and keeping things moving. Learned how to stay calm under pressure, deal with all kinds of people, and keep the vibe friendly.",
           highlights: [
             "Teamwork",
             "Communication",
