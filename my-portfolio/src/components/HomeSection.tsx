@@ -77,20 +77,8 @@ const HomeSection = ({
   const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, { once: true });
   const controls = useAnimation();
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  // Track mouse movement for subtle parallax effect
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX - window.innerWidth / 2) * 0.01,
-        y: (e.clientY - window.innerHeight / 2) * 0.01,
-      });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  // Removed mouse movement tracking
 
   // Animate elements when in view
   useEffect(() => {
@@ -238,9 +226,6 @@ const HomeSection = ({
           <motion.div variants={itemVariants}>
             <motion.h1
               className="text-5xl md:text-7xl font-bold leading-tight mb-6"
-              style={{
-                transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-              }}
             >
               <div>Hi, I'm</div>
               <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400">
@@ -266,7 +251,7 @@ const HomeSection = ({
           <motion.div variants={itemVariants}>
             <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
               Welcome! I'm an IT student who writes code by day and breaks it
-              (ethically) by night. I believe you can’t secure what you don’t
+              (ethically) by night. I believe you can't secure what you don't
               understand — so I build it first, then test its limits.
             </p>
           </motion.div>
@@ -338,160 +323,143 @@ const HomeSection = ({
           </motion.div>
         </motion.div>
 
-        {/* Right Column - Cybersecurity Visual */}
+        {/* Right Column - Binary Rain Effect */}
         <motion.div
           className="relative hidden lg:flex items-center justify-center"
           variants={itemVariants}
           initial="hidden"
           animate={controls}
         >
-          <div className="relative w-[500px] h-[500px]">
-            {/* Main Shield */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-cyan-500/20 backdrop-blur-xl border border-white/20 flex items-center justify-center"
-              style={{
-                clipPath:
-                  "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
-              }}
-              animate={{
-                scale: [1, 1.05, 1],
-                rotate: [0, 5, 0],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <div className="text-[120px]">🛡️</div>
-            </motion.div>
-
-            {/* Floating Code Elements */}
-            {[
-              { text: "SSH", pos: { top: "8%", left: "15%" }, delay: 0 },
-              { text: "SSL", pos: { top: "15%", right: "10%" }, delay: 0.5 },
-              { text: "VPN", pos: { bottom: "25%", left: "5%" }, delay: 1 },
-              { text: "AES", pos: { bottom: "10%", right: "15%" }, delay: 1.5 },
-              { text: "RSA", pos: { top: "45%", left: "0%" }, delay: 2 },
-              { text: "TLS", pos: { top: "35%", right: "0%" }, delay: 2.5 },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                className="absolute bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg px-4 py-3 text-base font-mono text-green-400 font-semibold"
-                style={item.pos}
-                animate={{
-                  y: [0, -15, 0],
-                  opacity: [0.6, 1, 0.6],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: item.delay,
-                }}
-              >
-                {item.text}
-              </motion.div>
-            ))}
-
-            {/* Binary Rain Effect */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              {[...Array(15)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute text-green-400/40 text-sm font-mono font-bold"
+          <div className="relative w-[500px] h-[600px] overflow-hidden">
+            {/* Main Container with subtle glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-cyan-500/5 rounded-3xl backdrop-blur-sm border border-white/5">
+              
+              {/* Binary Rain Streams */}
+              {[...Array(12)].map((_, columnIndex) => (
+                <div
+                  key={columnIndex}
+                  className="absolute top-0 overflow-hidden"
                   style={{
-                    left: `${8 + i * 6}%`,
-                    top: "-15%",
+                    left: `${8 + columnIndex * 7.5}%`,
+                    width: '20px',
+                    height: '100%',
+                  }}
+                >
+                  {/* Each column has multiple streams */}
+                  {[...Array(3)].map((_, streamIndex) => (
+                    <motion.div
+                      key={streamIndex}
+                      className="absolute font-mono text-sm leading-tight"
+                      style={{
+                        top: '-100%',
+                      }}
+                      animate={{
+                        y: ['0vh', '130vh'],
+                      }}
+                      transition={{
+                        duration: 8 + Math.random() * 4,
+                        repeat: Infinity,
+                        ease: "linear",
+                        delay: Math.random() * 6 + streamIndex * 2,
+                      }}
+                    >
+                      {/* Generate random binary string for each stream */}
+                      {[...Array(30)].map((_, charIndex) => {
+                        const isHighlighted = Math.random() > 0.85;
+                        const char = Math.random() > 0.5 ? '1' : '0';
+                        
+                        return (
+                          <motion.div
+                            key={charIndex}
+                            className={`${
+                              isHighlighted
+                                ? 'text-cyan-300 text-shadow-glow'
+                                : charIndex < 3
+                                ? 'text-green-300/80'
+                                : charIndex < 8
+                                ? 'text-green-400/60'
+                                : 'text-green-500/30'
+                            }`}
+                            style={{
+                              textShadow: isHighlighted 
+                                ? '0 0 10px rgba(34, 211, 238, 0.8)' 
+                                : charIndex < 3
+                                ? '0 0 5px rgba(34, 197, 94, 0.5)'
+                                : 'none',
+                            }}
+                          >
+                            {char}
+                          </motion.div>
+                        );
+                      })}
+                    </motion.div>
+                  ))}
+                </div>
+              ))}
+
+              {/* Floating Code Fragments */}
+              {[
+                { text: '#!/bin/bash', x: 15, y: 20, size: 'text-xs' },
+                { text: 'nmap -sS', x: 75, y: 35, size: 'text-xs' },
+                { text: 'curl -X POST', x: 25, y: 60, size: 'text-xs' },
+                { text: 'sudo -u root', x: 70, y: 75, size: 'text-xs' },
+                { text: 'nc -lvnp 4444', x: 20, y: 85, size: 'text-xs' },
+                { text: 'whoami', x: 80, y: 15, size: 'text-xs' },
+              ].map((fragment, index) => (
+                <motion.div
+                  key={index}
+                  className={`absolute ${fragment.size} font-mono text-cyan-400/40 font-medium select-none`}
+                  style={{
+                    left: `${fragment.x}%`,
+                    top: `${fragment.y}%`,
                   }}
                   animate={{
-                    y: ["0vh", "60vh"],
-                    opacity: [0, 1, 0],
+                    opacity: [0.2, 0.6, 0.2],
+                    y: [0, -8, 0],
                   }}
                   transition={{
                     duration: 4 + Math.random() * 2,
                     repeat: Infinity,
-                    ease: "linear",
-                    delay: Math.random() * 4,
+                    ease: "easeInOut",
+                    delay: Math.random() * 3,
                   }}
                 >
-                  {Math.random() > 0.5 ? "1" : "0"}
+                  {fragment.text}
                 </motion.div>
               ))}
-            </div>
 
-            {/* Pulse Rings */}
-            <motion.div
-              className="absolute inset-0 border-4 border-blue-400/30 rounded-full"
-              animate={{
-                scale: [1, 1.4, 1],
-                opacity: [0.4, 0.1, 0.4],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-            <motion.div
-              className="absolute inset-0 border-3 border-purple-400/25 rounded-full"
-              animate={{
-                scale: [1.1, 1.5, 1.1],
-                opacity: [0.3, 0.05, 0.3],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-            />
-
-            {/* Network Nodes */}
-            {[
-              { x: 15, y: 15 },
-              { x: 85, y: 25 },
-              { x: 10, y: 75 },
-              { x: 90, y: 85 },
-            ].map((node, index) => (
+              {/* Subtle Pulse Overlay */}
               <motion.div
-                key={index}
-                className="absolute w-5 h-5 bg-cyan-400 rounded-full shadow-xl shadow-cyan-400/60"
-                style={{
-                  left: `${node.x}%`,
-                  top: `${node.y}%`,
-                }}
+                className="absolute inset-0 bg-gradient-to-t from-transparent via-cyan-500/5 to-transparent rounded-3xl"
                 animate={{
-                  scale: [1, 1.8, 1],
-                  opacity: [0.7, 1, 0.7],
+                  opacity: [0.3, 0.7, 0.3],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 4,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: index * 0.5,
                 }}
               />
-            ))}
 
-            {/* Connecting Lines */}
-            <svg className="absolute inset-0 w-full h-full">
-              <motion.path
-                d="M 100 150 Q 250 200 400 150 Q 250 250 100 350"
-                stroke="rgba(59, 130, 246, 0.4)"
-                strokeWidth="3"
-                fill="none"
-                strokeDasharray="8,8"
+              {/* Corner Accent Lines */}
+              <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-cyan-400/40 rounded-tl-lg"></div>
+              <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-cyan-400/40 rounded-tr-lg"></div>
+              <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-cyan-400/40 rounded-bl-lg"></div>
+              <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-cyan-400/40 rounded-br-lg"></div>
+
+              {/* Scanning Line Effect */}
+              <motion.div
+                className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent"
                 animate={{
-                  strokeDashoffset: [0, -30],
+                  y: [0, 600, 0],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 8,
                   repeat: Infinity,
                   ease: "linear",
                 }}
               />
-            </svg>
+            </div>
           </div>
         </motion.div>
       </div>
