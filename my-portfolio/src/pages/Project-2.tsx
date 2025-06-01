@@ -1106,7 +1106,7 @@ const AIVulnerabilityScannerPage = () => {
             viewport={{ once: true }}
           >
             <p className="text-gray-500 text-sm">
-              Thanks for taking the time to go through this project! 🛡️
+              Thank you for taking the time to explore this project!
             </p>
           </motion.div>
         </div>
