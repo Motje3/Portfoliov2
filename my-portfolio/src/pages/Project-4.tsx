@@ -2,79 +2,67 @@ import {
   motion,
   useScroll,
   useTransform,
-  AnimatePresence,
+  
 } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Github } from "lucide-react";
 
-const RestaurantQRProjectPage = () => {
+const CargohubAPIProjectPage = () => {
   const navigate = useNavigate();
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, -50]);
-  const y2 = useTransform(scrollY, [0, 300], [0, 50]);
 
   const [activeFeature, setActiveFeature] = useState(0);
-  const [hoveredTech, setHoveredTech] = useState<number | null>(null);
+  const [, setHoveredTech] = useState<number | null>(null);
 
   const features = [
     {
-      title: "QR Code Scanning",
+      title: "Shipment Tracking",
       description:
-        "Customers simply scan the QR code on their table to instantly access the digital menu on their smartphone.",
-      icon: "📱",
+        "Track the status of shipments across the supply chain in real-time, from creation to delivery.",
+      icon: "📦",
       gradient: "from-blue-500 via-cyan-500 to-blue-600",
-      particles: ["✨", "📲", "🔗"],
+      particles: ["🚚", "📍", "📈"],
     },
     {
-      title: "Interactive Menu",
+      title: "Inventory Management",
       description:
-        "Beautiful, responsive digital menu with categories, images, descriptions, and real-time pricing updates.",
-      icon: "🍽️",
+        "Efficiently handle inventory levels, updates, and transfers across multiple warehouses.",
+      icon: "📊",
       gradient: "from-green-500 via-emerald-500 to-teal-500",
-      particles: ["🍕", "📋", "💫"],
+      particles: ["🏷️", "📦", "🗃️"],
     },
     {
-      title: "Order Management",
+      title: "Order Processing",
       description:
-        "Seamless order placement with customization options, special requests, and instant confirmation.",
-      icon: "🛒",
+        "Manage customer orders, validate contents, and link them to shipment and inventory seamlessly.",
+      icon: "📝",
       gradient: "from-purple-500 via-violet-500 to-indigo-500",
-      particles: ["🎯", "⚡", "🚀"],
+      particles: ["✅", "📑", "🧾"],
     },
     {
-      title: "Kitchen Dashboard",
+      title: "PDF Report Generator",
       description:
-        "Real-time kitchen dashboard displaying incoming orders, preparation status, and completion tracking.",
-      icon: "👨‍🍳",
+        "Generate clean, structured PDF summaries of orders and shipments on the fly.",
+      icon: "🧾",
       gradient: "from-orange-500 via-red-500 to-pink-500",
-      particles: ["🔥", "⏱️", "📊"],
+      particles: ["🖨️", "📄", "📎"],
     },
   ];
 
   const techStack = [
     {
-      name: "React",
-      icon: "⚛️",
-      color: "text-cyan-400",
-      bgGradient: "from-cyan-500/20 to-blue-500/20",
-    },
-    {
-      name: "Next.js 14",
-      icon: "▲",
-      color: "text-white",
-      bgGradient: "from-gray-500/20 to-slate-500/20",
-    },
-    {
-      name: "Tailwind CSS",
-      icon: "🎨",
-      color: "text-teal-400",
-      bgGradient: "from-teal-500/20 to-cyan-500/20",
-    },
-    {
-      name: "Fastify",
-      icon: "⚡",
+      name: "Python",
+      icon: "🐍",
       color: "text-yellow-400",
-      bgGradient: "from-yellow-500/20 to-orange-500/20",
+      bgGradient: "from-yellow-500/20 to-green-500/20",
+    },
+    {
+      name: "Flask",
+      icon: "🔥",
+      color: "text-red-400",
+      bgGradient: "from-red-500/20 to-orange-500/20",
     },
     {
       name: "PostgreSQL",
@@ -83,10 +71,22 @@ const RestaurantQRProjectPage = () => {
       bgGradient: "from-blue-600/20 to-indigo-500/20",
     },
     {
-      name: "Prisma",
-      icon: "🔷",
+      name: "PyTest",
+      icon: "🧪",
       color: "text-purple-400",
-      bgGradient: "from-purple-500/20 to-indigo-500/20",
+      bgGradient: "from-purple-500/20 to-pink-500/20",
+    },
+    {
+      name: "Docker",
+      icon: "🐳",
+      color: "text-cyan-400",
+      bgGradient: "from-cyan-500/20 to-blue-500/20",
+    },
+    {
+      name: "WeasyPrint",
+      icon: "🧾",
+      color: "text-green-400",
+      bgGradient: "from-green-500/20 to-emerald-500/20",
     },
   ];
 
@@ -234,7 +234,7 @@ const RestaurantQRProjectPage = () => {
                   >
                     🍽️
                   </motion.span>
-                  <span>Restaurant Technology</span>
+                  <span>Logistics Backend</span>
                 </motion.span>
               </motion.div>
 
@@ -265,67 +265,42 @@ const RestaurantQRProjectPage = () => {
                 variants={itemVariants}
                 className="text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0"
               >
-                A digital menu solution that makes ordering easier for customers
-                and restaurants.
+                An API designed by me and my school teammates to streamline
+                warehouse and shipment management. Built for
                 <motion.span
                   className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-semibold"
                   whileHover={{ scale: 1.05 }}
                 >
                   {" "}
-                  Scan, browse, order, and enjoy{" "}
+                  automation, tracking, and{" "}
                 </motion.span>
-                - all through an intuitive digital ecosystem.
+                making logistics a whole lot easier.
               </motion.p>
 
               <motion.div
                 variants={itemVariants}
                 className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               >
-                <motion.button
-                  className="relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-xl font-semibold transition-all duration-300 overflow-hidden group"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
+                <a
+                  href="https://github.com/MauriceBoendermaker/processing-and-tools"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <motion.div className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <motion.div
-                    className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    animate={{
-                      x: ["-100%", "100%"],
-                      opacity: [0, 0.5, 0],
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      repeatDelay: 2,
-                    }}
-                  />
-                  <div className="flex items-center justify-center space-x-2 relative z-10">
-                    <motion.span
-                      animate={{ rotate: [0, 15, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      🚀
-                    </motion.span>
-                    <span className="text-sm lg:text-base">View Live Demo</span>
-                  </div>
-                </motion.button>
-
-                <motion.button
-                  className="relative bg-white/5 backdrop-blur-xl border-2 border-blue-500 text-blue-400 hover:text-white px-6 py-3 lg:px-8 lg:py-4 rounded-xl font-semibold transition-all duration-300 group overflow-hidden"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <motion.div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="flex items-center justify-center space-x-2 relative z-10">
-                    <motion.span
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      💻
-                    </motion.span>
-                    <span className="text-sm lg:text-base">View Code</span>
-                  </div>
-                </motion.button>
+                  <motion.button
+                    className="relative bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-xl font-semibold transition-all duration-300 overflow-hidden group flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {/* Animated gradient overlay */}
+                    <motion.div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Glow effect */}
+                    <motion.div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-indigo-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <Github className="w-5 h-5 text-white group-hover:text-blue-300 transition-colors duration-300 z-10" />
+                    <span className="text-sm lg:text-base z-10">
+                      Visit GitHub
+                    </span>
+                  </motion.button>
+                </a>
               </motion.div>
             </motion.div>
 
@@ -384,14 +359,14 @@ const RestaurantQRProjectPage = () => {
                         }}
                         transition={{ duration: 2, repeat: Infinity }}
                       >
-                        QR Menu System
+                        CargoHub API
                       </motion.div>
                       <motion.div
                         className="text-gray-400 text-sm"
                         animate={{ opacity: [0.7, 1, 0.7] }}
                         transition={{ duration: 2, repeat: Infinity }}
                       >
-                        Scan • Browse • Order • Enjoy
+                        Track • Manage • Automate • Ship
                       </motion.div>
                     </div>
 
@@ -426,12 +401,12 @@ const RestaurantQRProjectPage = () => {
 
                 {/* Enhanced Floating Elements */}
                 {[
-                  { icon: "🍕", pos: { top: "5%", left: "5%" }, delay: 0 },
-                  { icon: "🍔", pos: { top: "15%", right: "5%" }, delay: 1 },
-                  { icon: "🍜", pos: { bottom: "25%", left: "0%" }, delay: 2 },
-                  { icon: "🥗", pos: { bottom: "5%", right: "10%" }, delay: 3 },
-                  { icon: "🍰", pos: { top: "40%", left: "-5%" }, delay: 4 },
-                  { icon: "🥤", pos: { top: "60%", right: "0%" }, delay: 5 },
+                  { icon: "📦", pos: { top: "5%", left: "5%" }, delay: 0 },
+                  { icon: "🚚", pos: { top: "15%", right: "5%" }, delay: 1 },
+                  { icon: "🧾", pos: { bottom: "25%", left: "0%" }, delay: 2 },
+                  { icon: "🖥️", pos: { bottom: "5%", right: "10%" }, delay: 3 },
+                  { icon: "🏷️", pos: { top: "40%", left: "-5%" }, delay: 4 },
+                  { icon: "⚙️", pos: { top: "60%", right: "0%" }, delay: 5 },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -512,7 +487,7 @@ const RestaurantQRProjectPage = () => {
               </span>
             </h2>
             <p className="text-gray-400 max-w-3xl mx-auto text-xl">
-              Core features that make this QR system effective for restaurants
+              Essential tools that power modern logistics workflows
             </p>
           </motion.div>
 
@@ -709,17 +684,17 @@ const RestaurantQRProjectPage = () => {
                       <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                       <p className="text-gray-400 text-sm leading-relaxed">
                         {index === 0 &&
-                          "Building dynamic and interactive user interfaces with component-based architecture"}
+                          "The backbone of the API – flexible, readable, and loved by devs for a reason."}
                         {index === 1 &&
-                          "Full-stack React framework with App Router, server components, and edge runtime"}
+                          "Micro web framework used to build our RESTful endpoints with minimal overhead."}
                         {index === 2 &&
-                          "Utility-first CSS framework for rapid UI development and responsive design"}
+                          "Reliable and powerful relational database for handling structured logistics data."}
                         {index === 3 &&
-                          "Fast and lightweight web framework built for high-performance Node.js applications"}
+                          "Used to test all endpoints and keep bugs from sneaking into production."}
                         {index === 4 &&
-                          "Powerful open-source relational database with advanced features and reliability"}
+                          "Containerized setup for consistent deployment — works everywhere, every time."}
                         {index === 5 &&
-                          "Next-generation ORM for type-safe database access and seamless migrations"}
+                          "Generates clean, printable PDF reports for shipments, orders, and summaries."}
                       </p>
                     </div>
 
@@ -909,4 +884,4 @@ const RestaurantQRProjectPage = () => {
   );
 };
 
-export default RestaurantQRProjectPage;
+export default CargohubAPIProjectPage;

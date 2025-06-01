@@ -271,12 +271,7 @@ const Portfolio = () => {
                     >
                       <FiLinkedin size={16} />
                     </a>
-                    <a
-                      href="https://www.instagram.com/mohammad_mo_o/"
-                      className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-pink-500/20 transition-all duration-300 hover:scale-110"
-                    >
-                      <FiInstagram size={16} />
-                    </a>
+                    
                     <a
                       href="https://github.com/Motje3"
                       className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-500/20 transition-all duration-300 hover:scale-110"
@@ -301,7 +296,6 @@ const Portfolio = () => {
               <p className="text-gray-400 text-sm mb-4 md:mb-0 flex items-center">
                 <span className="mr-2">©</span>
                 2025 Mohammad Falaha. All rights reserved.
-                <span className="ml-2">🔒</span>
               </p>
             </div>
           </motion.div>

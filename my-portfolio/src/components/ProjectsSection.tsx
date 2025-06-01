@@ -54,7 +54,7 @@ const ProjectsSection = ({
       id: 3,
       title: "Shipment Tracking System",
       description:
-        "Built a mobile app that makes your phone the ultimate package whisperer. Scan barcodes, track shipments across the globe, and watch everything unfold on a dashboard that's cleaner than your inbox will ever be. Because life's too short to wonder where your stuff is.",
+        "Developed a smart shipment tracking system for businesses. Field workers use a mobile app to scan packages and update statuses in real time, while managers monitor everything from a sleek admin dashboard — including live stats, delivery routes, and issue reports. Say goodbye to guesswork and hello to full control over your logistics.",
       tech: ["React Native", "C#", "PostgreSQL", "Tailwind"],
       category: "Mobile + Backend",
       icon: Code,
@@ -90,7 +90,7 @@ const ProjectsSection = ({
       shadowColor: "shadow-green-500/20",
       featured: false,
       githubLink: "https://github.com/yassyass2/OfficeCalendar-team6",
-      route: "/project-6",
+      route: "/project-5",
     },
     {
       id: 6,
