@@ -20,7 +20,7 @@ const JourneySection = ({
           title: "Informatica",
           institution: "Hogeschool Rotterdam",
           description:
-            "Started out just wanting to understand how code actually works… One thing led to another and now I'm more into hacking programs then actually building them. Here, I’ve gotten really good at software development and picked up the fundamentals of networking, databases, and cybersecurity.",
+            "Started out just wanting to understand how code actually works… One thing led to another and now I'm more into hacking programs than actually building them. Here, I’ve gotten really good at software development and picked up the fundamentals of networking, databases, and cybersecurity.",
           highlights: [
             "Software Development",
             "Cybersecurity",

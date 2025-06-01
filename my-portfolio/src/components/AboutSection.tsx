@@ -1,4 +1,4 @@
-import { motion, } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 
 const AboutSection = ({
@@ -34,7 +34,7 @@ const AboutSection = ({
           value: "Optimistic",
           icon: "🌞",
           description:
-            "Even when things break or life don't go my way. I believe there's always a fix — or at least a workaround.",
+            "Even when things break or life doesn't go my way. I believe there's always a fix — or at least a workaround.",
         },
         {
           title: "Drive",
@@ -248,13 +248,13 @@ const AboutSection = ({
               </div>
 
               <p className="text-gray-300 leading-relaxed mb-6">
-                I’m Mohammad — Informatica student at Hogeschool Rotterdam by
-                day, cybersecurity enthusiast by... also day (and sometimes
-                night). I chose to start with software development because,
-                well… you gotta know how things work before you break them
-                (ethically, of course). My real obsession lives in firewalls,
-                vulnerabilities, and ethical hacking — basically, breaking stuff
-                legally.
+                I’m Mohammad — Informatica student at Rotterdam University of
+                Applied Sciences by day, cybersecurity enthusiast by... also day
+                (and sometimes night). I chose to start with software
+                development because, well… you gotta know how things work before
+                you break them (ethically, of course). My real obsession lives
+                in firewalls, vulnerabilities, and ethical hacking — basically,
+                breaking stuff legally.
               </p>
 
               <p className="text-gray-300 leading-relaxed mb-6">
