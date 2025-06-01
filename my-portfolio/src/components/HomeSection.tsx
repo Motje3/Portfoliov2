@@ -78,8 +78,6 @@ const HomeSection = ({
   const isInView = useInView(ref, { once: true });
   const controls = useAnimation();
 
-  // Removed mouse movement tracking
-
   // Animate elements when in view
   useEffect(() => {
     if (isInView) {

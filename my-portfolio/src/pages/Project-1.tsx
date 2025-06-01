@@ -437,6 +437,37 @@ const RestaurantQRProjectPage = () => {
             </div>
           </motion.div>
         </div>
+
+        {/* Scroll Indicator - Hidden on mobile */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 hidden sm:block"
+          animate={{
+            y: [0, 10, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <div className="flex flex-col items-center space-y-2">
+            <span className="text-sm">Scroll Down</span>
+            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+              <motion.div
+                className="w-1 h-3 bg-white/60 rounded-full mt-2"
+                animate={{
+                  y: [0, 10, 0],
+                  opacity: [0.4, 1, 0.4],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Features Section - CLEANED */}
