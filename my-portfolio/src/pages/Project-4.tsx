@@ -242,7 +242,7 @@ const RestaurantQRProjectPage = () => {
                 variants={itemVariants}
                 className="text-4xl md:text-6xl lg:text-8xl font-bold leading-tight"
               >
-                Restaurant
+                CargoHub
                 <motion.span
                   className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-500 to-purple-500"
                   animate={{
@@ -257,7 +257,7 @@ const RestaurantQRProjectPage = () => {
                     backgroundSize: "200% 200%",
                   }}
                 >
-                  QR System
+                  API
                 </motion.span>
               </motion.h1>
 

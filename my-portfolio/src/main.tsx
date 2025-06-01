@@ -10,6 +10,8 @@ import "./index.css";
 
 import Portfolio from "./Portfolio.tsx";
 import Project1Page from "./pages/Project-1.tsx";
+import Project4Page from "./pages/Project-4.tsx";
+
 
 const RootLayout = () => {
   return (
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/project-1",
         element: <Project1Page />,
+      },
+      {
+        path: "/project-4",
+        element: <Project4Page />,
       },
     ],
   },

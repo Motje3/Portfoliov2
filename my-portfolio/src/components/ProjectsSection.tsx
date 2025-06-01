@@ -1,8 +1,4 @@
-import {
-  motion,
-  
-  AnimatePresence,
-} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -38,7 +34,8 @@ const ProjectsSection = ({
       gradient: "from-emerald-500 via-teal-500 to-cyan-500",
       shadowColor: "shadow-emerald-500/20",
       featured: true,
-      websiteLink: "https://tabletech.nl/", // Website link
+      websiteLink: "https://tabletech.nl/",
+      route: "/project-1",
     },
     {
       id: 2,
@@ -51,7 +48,7 @@ const ProjectsSection = ({
       gradient: "from-red-500 via-orange-500 to-yellow-500",
       shadowColor: "shadow-red-500/20",
       featured: true,
-      // No link for this one
+      route: "/project-2",
     },
     {
       id: 3,
@@ -65,6 +62,7 @@ const ProjectsSection = ({
       shadowColor: "shadow-blue-500/20",
       featured: true,
       githubLink: "https://github.com/Motje3/QR-Scanner-Tracking",
+      route: "/project-3",
     },
     {
       id: 4,
@@ -78,6 +76,7 @@ const ProjectsSection = ({
       shadowColor: "shadow-orange-500/20",
       featured: false,
       githubLink: "https://github.com/MauriceBoendermaker/processing-and-tools",
+      route: "/project-4",
     },
     {
       id: 5,
@@ -91,6 +90,7 @@ const ProjectsSection = ({
       shadowColor: "shadow-green-500/20",
       featured: false,
       githubLink: "https://github.com/yassyass2/OfficeCalendar-team6",
+      route: "/project-6",
     },
     {
       id: 6,
@@ -103,7 +103,7 @@ const ProjectsSection = ({
       gradient: "from-purple-500 via-violet-500 to-indigo-500",
       shadowColor: "shadow-purple-500/20",
       featured: false,
-      // No link for this one
+      route: "/project-6",
     },
   ];
 
@@ -111,12 +111,11 @@ const ProjectsSection = ({
   const additionalProjects = projects.filter((project) => !project.featured);
 
   const handleReadMore = (projectId: number) => {
-    if (projectId === 1) {
-      navigate("/project-1");
+    const project = projects.find((p) => p.id === projectId);
+    if (project?.route) {
+      navigate(project.route);
     } else {
-      console.log(
-        `Navigate to project ${projectId} - route not configured yet`
-      );
+      console.log("No route defined.");
     }
   };
 
