@@ -12,7 +12,6 @@ const QRShipmentTrackerPage = () => {
   const navigate = useNavigate();
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, -50]);
-  const y2 = useTransform(scrollY, [0, 300], [0, 50]);
 
   const [activeFeature, setActiveFeature] = useState(0);
   const [hoveredTech, setHoveredTech] = useState<number | null>(null);
