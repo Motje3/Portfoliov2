@@ -249,27 +249,26 @@ const AboutSection = ({
 
               <p className="text-gray-300 leading-relaxed mb-6">
                 I’m Mohammad — Informatica student at Rotterdam University of
-                Applied Sciences by day, cybersecurity enthusiast by... also day
-                (and sometimes night). I chose to start with software
-                development because, well… you gotta know how things work before
-                you break them (ethically, of course). My real obsession lives
-                in firewalls, vulnerabilities, and ethical hacking — basically,
-                breaking stuff legally.
+                Applied Sciences. learning to build software at uni, learning to
+                break it responsibly everywhere else. I chose to start with
+                software development because, well… you gotta know how things
+                work before you break them (ethically, of course). My real
+                obsession lives in firewalls, vulnerabilities, and ethical
+                hacking — basically, breaking stuff legally.
               </p>
 
               <p className="text-gray-300 leading-relaxed mb-6">
                 I’m passionate about cybersecurity, especially the offensive
-                side: penetration testing, ethical hacking, and helping
-                organizations stay one step ahead of cyber threats.
+                side: penetration testing, ethical hacking, and my end goal is
+                helping organizations stay one step ahead of cyber threats.
               </p>
 
               <p className="text-gray-300 leading-relaxed mb-6">
-                I’m an optimistic realist (yes, that’s a thing) who believes
-                there’s always a way forward — even if it means Googling for 2
-                hours before writing one line of code. I like learning by doing,
-                building real-world projects, and challenging myself with
-                complex problems — preferably the kind that involve digital
-                defense, not math.
+                I’m an optimistic realist, I believe every problem has a
+                solution; some just require more coffee than others — even if it
+                means Googling for 2 hours before writing one line of code. I
+                like learning by doing, building real-world projects, and
+                challenging myself with complex problems.
               </p>
 
               <p className="text-gray-300 leading-relaxed font-semibold italic mb-6">

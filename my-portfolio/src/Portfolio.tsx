@@ -4,7 +4,6 @@ import {
   FiMail,
   FiPhone,
   FiLinkedin,
-  FiInstagram,
   FiGithub,
 } from "react-icons/fi";
 import { motion } from "framer-motion";
@@ -271,7 +270,7 @@ const Portfolio = () => {
                     >
                       <FiLinkedin size={16} />
                     </a>
-                    
+
                     <a
                       href="https://github.com/Motje3"
                       className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-500/20 transition-all duration-300 hover:scale-110"

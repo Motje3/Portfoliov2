@@ -267,21 +267,25 @@ const ProjectsSection = ({
 
                       {/* Enhanced CTA buttons */}
                       <div className="flex space-x-3">
-                        <motion.button
-                          onClick={() => handleReadMore(project.id)}
-                          className={`flex-1 bg-gradient-to-r ${project.gradient} hover:shadow-xl ${project.shadowColor} text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 group/btn`}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <span>
-                            {project.id === 2
-                              ? "Work in Progress"
-                              : project.id === 6
-                              ? "Details Coming Soon"
-                              : "Explore"}
-                          </span>
-                          <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
-                        </motion.button>
+                        {project.id === 6 ? (
+                          <div className="flex-1 bg-gray-600/30 text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center cursor-not-allowed">
+                            Details Coming Soon
+                          </div>
+                        ) : (
+                          <motion.button
+                            onClick={() => handleReadMore(project.id)}
+                            className={`flex-1 bg-gradient-to-r ${project.gradient} hover:shadow-xl ${project.shadowColor} text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 group/btn`}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <span>
+                              {project.id === 2
+                                ? "Work in Progress"
+                                : "Explore"}
+                            </span>
+                            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
+                          </motion.button>
+                        )}
 
                         {project.websiteLink ? (
                           <a
@@ -439,21 +443,25 @@ const ProjectsSection = ({
 
                           {/* Enhanced CTA buttons */}
                           <div className="flex space-x-3">
-                            <motion.button
-                              onClick={() => handleReadMore(project.id)}
-                              className={`flex-1 bg-gradient-to-r ${project.gradient} hover:shadow-xl ${project.shadowColor} text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 group/btn`}
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.98 }}
-                            >
-                              <span>
-                                {project.id === 2
-                                  ? "Work in Progress"
-                                  : project.id === 6
-                                  ? "Details Coming Soon"
-                                  : "Explore"}
-                              </span>
-                              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
-                            </motion.button>
+                            {project.id === 6 ? (
+                              <div className="flex-1 bg-gray-600/30 text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center cursor-not-allowed">
+                                Details Coming Soon
+                              </div>
+                            ) : (
+                              <motion.button
+                                onClick={() => handleReadMore(project.id)}
+                                className={`flex-1 bg-gradient-to-r ${project.gradient} hover:shadow-xl ${project.shadowColor} text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 group/btn`}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                              >
+                                <span>
+                                  {project.id === 2
+                                    ? "Work in Progress"
+                                    : "Explore"}
+                                </span>
+                                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
+                              </motion.button>
+                            )}
 
                             {project.websiteLink ? (
                               <a
@@ -579,6 +587,21 @@ const ProjectsSection = ({
             {/* Hover glow effect */}
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </motion.button>
+        </motion.div>
+
+        {/* ADD THE DISCLAIMER HERE */}
+        <motion.div
+          className="mt-12 pt-6 border-t border-gray-700/50"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <p className="text-gray-500 text-sm text-center max-w-2xl mx-auto leading-relaxed">
+            Most of these projects were developed collaboratively with my school
+            teammates. While I contributed significantly to each project, credit
+            goes to the entire team for bringing these ideas to life.
+          </p>
         </motion.div>
       </div>
     </motion.section>
