@@ -12,12 +12,12 @@ const AIVulnerabilityScannerPage = () => {
   const navigate = useNavigate();
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, -50]);
-  const y2 = useTransform(scrollY, [0, 300], [0, 50]);
 
   const [activeFeature, setActiveFeature] = useState(0);
   const [hoveredTech, setHoveredTech] = useState<number | null>(null);
   const [scanProgress, setScanProgress] = useState(0);
   const [isScanning, setIsScanning] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Simulate scanning animation
   useEffect(() => {
@@ -76,48 +76,58 @@ const AIVulnerabilityScannerPage = () => {
       icon: "🐍",
       color: "text-green-400",
       bgGradient: "from-green-500/20 to-emerald-500/20",
-      description: "Core language for AI models and security scanning logic"
+      description: "Core language for AI models and security scanning logic",
     },
     {
       name: "TensorFlow",
       icon: "🧠",
       color: "text-orange-400",
       bgGradient: "from-orange-500/20 to-red-500/20",
-      description: "Machine learning framework for vulnerability pattern recognition"
+      description:
+        "Machine learning framework for vulnerability pattern recognition",
     },
     {
       name: "FastAPI",
       icon: "⚡",
       color: "text-cyan-400",
       bgGradient: "from-cyan-500/20 to-blue-500/20",
-      description: "High-performance API framework for real-time scanning endpoints"
+      description:
+        "High-performance API framework for real-time scanning endpoints",
     },
     {
       name: "React",
       icon: "⚛️",
       color: "text-blue-400",
       bgGradient: "from-blue-500/20 to-indigo-500/20",
-      description: "Frontend dashboard for vulnerability reporting and management"
+      description:
+        "Frontend dashboard for vulnerability reporting and management",
     },
     {
       name: "Redis",
       icon: "📡",
       color: "text-red-400",
       bgGradient: "from-red-500/20 to-pink-500/20",
-      description: "High-speed caching for scan results and threat intelligence"
+      description:
+        "High-speed caching for scan results and threat intelligence",
     },
     {
       name: "Docker",
       icon: "🐳",
       color: "text-blue-500",
       bgGradient: "from-blue-600/20 to-cyan-500/20",
-      description: "Containerized deployment for scalable security scanning"
+      description: "Containerized deployment for scalable security scanning",
     },
   ];
 
   const vulnerabilityTypes = [
-    "SQL Injection", "XSS", "CSRF", "Buffer Overflow", "Code Injection", 
-    "Path Traversal", "Authentication Bypass", "Privilege Escalation"
+    "SQL Injection",
+    "XSS",
+    "CSRF",
+    "Buffer Overflow",
+    "Code Injection",
+    "Path Traversal",
+    "Authentication Bypass",
+    "Privilege Escalation",
   ];
 
   const [currentVuln, setCurrentVuln] = useState(0);
@@ -188,7 +198,7 @@ const AIVulnerabilityScannerPage = () => {
             ease: "linear",
           }}
         />
-        
+
         {/* Static glowing binary patterns */}
         {Array.from({ length: 15 }).map((_, i) => (
           <motion.div
@@ -329,21 +339,27 @@ const AIVulnerabilityScannerPage = () => {
                 className="text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 space-y-4"
               >
                 <p>
-                  An AI-powered vulnerability scanner that hunts bugs like a 
+                  An AI-powered vulnerability scanner that hunts bugs like a
                   <motion.span
                     className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400 font-semibold"
                     whileHover={{ scale: 1.05 }}
                   >
-                    {" "}hacker on caffeine{" "}
+                    {" "}
+                    hacker on caffeine{" "}
                   </motion.span>
-                  - finding flaws, explaining them in plain English, and never asking for a break.
+                  - finding flaws, explaining them in plain English, and never
+                  asking for a break.
                 </p>
-                
+
                 {/* Animated vulnerability type display */}
-                <motion.div 
+                <motion.div
                   className="bg-gray-800/50 backdrop-blur-sm border border-red-500/20 rounded-lg p-3 font-mono text-sm"
-                  animate={{ 
-                    boxShadow: ["0 0 0 rgba(239, 68, 68, 0)", "0 0 20px rgba(239, 68, 68, 0.3)", "0 0 0 rgba(239, 68, 68, 0)"] 
+                  animate={{
+                    boxShadow: [
+                      "0 0 0 rgba(239, 68, 68, 0)",
+                      "0 0 20px rgba(239, 68, 68, 0.3)",
+                      "0 0 0 rgba(239, 68, 68, 0)",
+                    ],
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
@@ -408,7 +424,7 @@ const AIVulnerabilityScannerPage = () => {
                     boxShadow: [
                       "0 0 0 rgba(239, 68, 68, 0)",
                       "0 0 30px rgba(239, 68, 68, 0.3)",
-                      "0 0 0 rgba(239, 68, 68, 0)"
+                      "0 0 0 rgba(239, 68, 68, 0)",
                     ],
                   }}
                   transition={{
@@ -422,20 +438,30 @@ const AIVulnerabilityScannerPage = () => {
                     <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <span className="text-gray-400 ml-4">AI-Scanner v2.1.0</span>
+                    <span className="text-gray-400 ml-4">
+                      AI-Scanner v2.1.0
+                    </span>
                   </div>
 
                   {/* Terminal Content */}
                   <div className="space-y-2 text-xs">
-                    <div className="text-green-400">$ ai-scanner --target https://example.com</div>
-                    <div className="text-gray-400">Initializing AI vulnerability scanner...</div>
+                    <div className="text-green-400">
+                      $ ai-scanner --target https://example.com
+                    </div>
+                    <div className="text-gray-400">
+                      Initializing AI vulnerability scanner...
+                    </div>
                     <div className="text-blue-400">Loading ML models... ✓</div>
-                    <div className="text-purple-400">Starting reconnaissance phase...</div>
-                    
+                    <div className="text-purple-400">
+                      Starting reconnaissance phase...
+                    </div>
+
                     {/* Progress Bar */}
                     {isScanning && (
                       <motion.div className="my-3">
-                        <div className="text-yellow-400 mb-1">Scan Progress: {scanProgress}%</div>
+                        <div className="text-yellow-400 mb-1">
+                          Scan Progress: {scanProgress}%
+                        </div>
                         <div className="w-full bg-gray-700 rounded-full h-2">
                           <motion.div
                             className="bg-gradient-to-r from-red-500 to-orange-500 h-2 rounded-full"
@@ -446,23 +472,31 @@ const AIVulnerabilityScannerPage = () => {
                         </div>
                       </motion.div>
                     )}
-                    
-                    <div className="text-red-400">⚠️  SQL Injection detected at /login</div>
-                    <div className="text-orange-400">⚠️  XSS vulnerability in search form</div>
-                    <div className="text-yellow-400">ℹ️  Insecure headers found</div>
-                    <div className="text-green-400">✓ HTTPS properly configured</div>
-                    
-                    <motion.div 
+
+                    <div className="text-red-400">
+                      ⚠️ SQL Injection detected at /login
+                    </div>
+                    <div className="text-orange-400">
+                      ⚠️ XSS vulnerability in search form
+                    </div>
+                    <div className="text-yellow-400">
+                      ℹ️ Insecure headers found
+                    </div>
+                    <div className="text-green-400">
+                      ✓ HTTPS properly configured
+                    </div>
+
+                    <motion.div
                       className="text-red-500 font-bold mt-4"
                       animate={{ opacity: [0.5, 1, 0.5] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     >
-                      {isScanning ? "Scanning in progress..." : "3 vulnerabilities found!"}
+                      {isScanning
+                        ? "Scanning in progress..."
+                        : "3 vulnerabilities found!"}
                     </motion.div>
                   </div>
                 </motion.div>
-
-
               </div>
             </motion.div>
           </div>
@@ -517,7 +551,8 @@ const AIVulnerabilityScannerPage = () => {
               </span>
             </h2>
             <p className="text-gray-400 max-w-3xl mx-auto text-xl">
-              Core features that make this QR system effective for security scanning
+              Core features that make this QR system effective for security
+              scanning
             </p>
           </motion.div>
 
@@ -567,11 +602,11 @@ const AIVulnerabilityScannerPage = () => {
               viewport={{ once: true }}
             >
               <div className="text-center space-y-8">
-                <motion.div 
+                <motion.div
                   className="text-8xl"
-                  animate={{ 
+                  animate={{
                     rotate: [0, 5, -5, 0],
-                    scale: [1, 1.1, 1] 
+                    scale: [1, 1.1, 1],
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
@@ -676,7 +711,8 @@ const AIVulnerabilityScannerPage = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              The technologies and frameworks powering this AI vulnerability scanner
+              The technologies and frameworks powering this AI vulnerability
+              scanner
             </motion.p>
           </motion.div>
 
@@ -707,10 +743,14 @@ const AIVulnerabilityScannerPage = () => {
                   {/* Glitch effect on hover */}
                   <motion.div
                     className="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100"
-                    animate={hoveredTech === index ? {
-                      x: [0, -2, 2, 0],
-                      opacity: [0, 0.3, 0],
-                    } : {}}
+                    animate={
+                      hoveredTech === index
+                        ? {
+                            x: [0, -2, 2, 0],
+                            opacity: [0, 0.3, 0],
+                          }
+                        : {}
+                    }
                     transition={{ duration: 0.1, repeat: 3 }}
                   />
 
@@ -718,9 +758,13 @@ const AIVulnerabilityScannerPage = () => {
                   <div className="relative z-10 text-center space-y-4">
                     {/* Tech Icon */}
                     <div className="relative mx-auto w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-gradient-to-br from-red-500/20 to-orange-500/10 backdrop-blur-sm border border-red-500/20 flex items-center justify-center text-3xl lg:text-4xl">
-                      <motion.span 
+                      <motion.span
                         className="relative z-10"
-                        animate={hoveredTech === index ? { rotate: [0, 15, -15, 0] } : {}}
+                        animate={
+                          hoveredTech === index
+                            ? { rotate: [0, 15, -15, 0] }
+                            : {}
+                        }
                         transition={{ duration: 0.5 }}
                       >
                         {tech.icon}
@@ -746,7 +790,10 @@ const AIVulnerabilityScannerPage = () => {
                     <div className="pt-2">
                       <div className="w-full bg-gray-700/50 rounded-full h-2 overflow-hidden">
                         <motion.div
-                          className={`h-full bg-gradient-to-r ${tech.bgGradient.replace("/20", "")}`}
+                          className={`h-full bg-gradient-to-r ${tech.bgGradient.replace(
+                            "/20",
+                            ""
+                          )}`}
                           initial={{ width: 0 }}
                           animate={{ width: "95%" }}
                           transition={{ duration: 1, delay: 0.2 + index * 0.1 }}
@@ -781,7 +828,8 @@ const AIVulnerabilityScannerPage = () => {
               </span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              Watch the AI scanner tear through a website's defenses like hot knife through butter
+              Watch the AI scanner tear through a website's defenses like hot
+              knife through butter
             </p>
           </motion.div>
 
@@ -796,8 +844,10 @@ const AIVulnerabilityScannerPage = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left: Scan Results */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-white mb-6">Latest Scan Results</h3>
-                
+                <h3 className="text-2xl font-bold text-white mb-6">
+                  Latest Scan Results
+                </h3>
+
                 {/* Vulnerability Cards */}
                 {[
                   {
@@ -806,7 +856,7 @@ const AIVulnerabilityScannerPage = () => {
                     location: "/api/login",
                     color: "red",
                     icon: "💉",
-                    description: "User input not properly sanitized"
+                    description: "User input not properly sanitized",
                   },
                   {
                     type: "XSS Vulnerability",
@@ -814,7 +864,7 @@ const AIVulnerabilityScannerPage = () => {
                     location: "/search?q=",
                     color: "orange",
                     icon: "🔴",
-                    description: "Reflected XSS in search parameter"
+                    description: "Reflected XSS in search parameter",
                   },
                   {
                     type: "Weak Headers",
@@ -822,8 +872,8 @@ const AIVulnerabilityScannerPage = () => {
                     location: "Global",
                     color: "yellow",
                     icon: "⚠️",
-                    description: "Missing security headers detected"
-                  }
+                    description: "Missing security headers detected",
+                  },
                 ].map((vuln, index) => (
                   <motion.div
                     key={index}
@@ -837,13 +887,21 @@ const AIVulnerabilityScannerPage = () => {
                       <div className={`text-3xl`}>{vuln.icon}</div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="text-lg font-bold text-white">{vuln.type}</h4>
-                          <span className={`px-3 py-1 rounded-full text-xs font-bold bg-${vuln.color}-500/20 text-${vuln.color}-400 border border-${vuln.color}-500/30`}>
+                          <h4 className="text-lg font-bold text-white">
+                            {vuln.type}
+                          </h4>
+                          <span
+                            className={`px-3 py-1 rounded-full text-xs font-bold bg-${vuln.color}-500/20 text-${vuln.color}-400 border border-${vuln.color}-500/30`}
+                          >
                             {vuln.severity}
                           </span>
                         </div>
-                        <p className="text-gray-400 text-sm mb-2">{vuln.description}</p>
-                        <p className="text-gray-500 text-xs font-mono">{vuln.location}</p>
+                        <p className="text-gray-400 text-sm mb-2">
+                          {vuln.description}
+                        </p>
+                        <p className="text-gray-500 text-xs font-mono">
+                          {vuln.location}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -856,7 +914,7 @@ const AIVulnerabilityScannerPage = () => {
                   <span>🤖</span>
                   <span>AI Analysis</span>
                 </h3>
-                
+
                 <div className="space-y-4 font-mono text-sm">
                   <motion.div
                     className="text-purple-400"
@@ -866,7 +924,7 @@ const AIVulnerabilityScannerPage = () => {
                   >
                     Analyzing vulnerability patterns...
                   </motion.div>
-                  
+
                   <motion.div
                     className="text-blue-400"
                     initial={{ opacity: 0 }}
@@ -875,7 +933,7 @@ const AIVulnerabilityScannerPage = () => {
                   >
                     Cross-referencing with CVE database...
                   </motion.div>
-                  
+
                   <motion.div
                     className="text-yellow-400"
                     initial={{ opacity: 0 }}
@@ -884,7 +942,7 @@ const AIVulnerabilityScannerPage = () => {
                   >
                     Generating remediation suggestions...
                   </motion.div>
-                  
+
                   <motion.div
                     className="text-green-400 font-bold"
                     initial={{ opacity: 0 }}
@@ -893,17 +951,21 @@ const AIVulnerabilityScannerPage = () => {
                   >
                     ✓ Analysis complete!
                   </motion.div>
-                  
+
                   <motion.div
                     className="bg-gray-900/50 p-4 rounded-lg border border-green-500/20 mt-6"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 2.5 }}
                   >
-                    <div className="text-green-400 font-bold mb-2">🎯 AI Recommendation:</div>
+                    <div className="text-green-400 font-bold mb-2">
+                      🎯 AI Recommendation:
+                    </div>
                     <div className="text-gray-300 text-xs leading-relaxed">
-                      Immediate action required on SQL injection. Implement parameterized queries and input validation. 
-                      XSS can be mitigated with output encoding. Security headers should be configured ASAP.
+                      Immediate action required on SQL injection. Implement
+                      parameterized queries and input validation. XSS can be
+                      mitigated with output encoding. Security headers should be
+                      configured ASAP.
                     </div>
                   </motion.div>
                 </div>
@@ -947,8 +1009,9 @@ const AIVulnerabilityScannerPage = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              This project is currently under development. I'm working on building all the features 
-              and will have a preview version available soon. Stay tuned for updates!
+              This project is currently under development. I'm working on
+              building all the features and will have a preview version
+              available soon. Stay tuned for updates!
             </motion.p>
           </motion.div>
 

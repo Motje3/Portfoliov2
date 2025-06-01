@@ -4,17 +4,26 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const RestaurantQRProjectPage = () => {
   const navigate = useNavigate();
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, -50]);
-  const y2 = useTransform(scrollY, [0, 300], [0, 50]);
 
   const [activeFeature, setActiveFeature] = useState(0);
-  const [hoveredTech, setHoveredTech] = useState<number | null>(null);
+  const [, setHoveredTech] = useState<number | null>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > window.innerHeight);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const features = [
     {
@@ -114,6 +123,13 @@ const RestaurantQRProjectPage = () => {
 
   const handleBackToPortfolio = () => {
     navigate("/");
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -905,6 +921,29 @@ const RestaurantQRProjectPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Scroll to Top Button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full shadow-2xl z-50 flex items-center justify-center hover:from-blue-600 hover:to-cyan-600 transition-all duration-300"
+            onClick={scrollToTop}
+            initial={{ opacity: 0, scale: 0, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0, y: 20 }}
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div
+              animate={{ y: [-2, 2, -2] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              ↑
+            </motion.div>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
