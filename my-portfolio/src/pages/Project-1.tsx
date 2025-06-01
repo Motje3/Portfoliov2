@@ -6,6 +6,7 @@ import {
 } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Github, Linkedin, Globe } from "lucide-react";
 
 const RestaurantQRProjectPage = () => {
   const navigate = useNavigate();
@@ -288,61 +289,42 @@ const RestaurantQRProjectPage = () => {
                   whileHover={{ scale: 1.05 }}
                 >
                   {" "}
-                  Scan, browse, order, and enjoy{" "}
+                  Scan, browse, order, and enjoy.{" "}
                 </motion.span>
-                - all through an intuitive digital ecosystem.
+                all through an intuitive digital ecosystem.
               </motion.p>
 
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              <motion.button
+                className="relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-xl font-semibold transition-all duration-300 overflow-hidden group"
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.open("https://tabletech.nl/", "_blank")}
               >
-                <motion.button
-                  className="relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-xl font-semibold transition-all duration-300 overflow-hidden group"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <motion.div className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <motion.div className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <motion.div
+                  className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  animate={{
+                    x: ["-100%", "100%"],
+                    opacity: [0, 0.5, 0],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                  }}
+                />
+                <div className="flex items-center justify-center space-x-2 relative z-10">
                   <motion.div
-                    className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    animate={{
-                      x: ["-100%", "100%"],
-                      opacity: [0, 0.5, 0],
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      repeatDelay: 2,
-                    }}
-                  />
-                  <div className="flex items-center justify-center space-x-2 relative z-10">
-                    <motion.span
-                      animate={{ rotate: [0, 15, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      🚀
-                    </motion.span>
-                    <span className="text-sm lg:text-base">View Live Demo</span>
-                  </div>
-                </motion.button>
-
-                <motion.button
-                  className="relative bg-white/5 backdrop-blur-xl border-2 border-blue-500 text-blue-400 hover:text-white px-6 py-3 lg:px-8 lg:py-4 rounded-xl font-semibold transition-all duration-300 group overflow-hidden"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <motion.div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="flex items-center justify-center space-x-2 relative z-10">
-                    <motion.span
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      💻
-                    </motion.span>
-                    <span className="text-sm lg:text-base">View Code</span>
-                  </div>
-                </motion.button>
-              </motion.div>
+                    animate={{ rotate: [0, 15, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <Globe size={20} className="text-white" />
+                  </motion.div>
+                  <span className="text-sm lg:text-base">
+                    Visit our website
+                  </span>
+                </div>
+              </motion.button>
             </motion.div>
 
             {/* Right Column - Phone Mockup (Hidden on Mobile) */}
@@ -876,10 +858,17 @@ const RestaurantQRProjectPage = () => {
             <p className="text-gray-400 mb-6">Or connect with me on:</p>
 
             <div className="flex justify-center space-x-6">
-              {/* Social Links */}
               {[
-                { name: "LinkedIn", icon: "🔗", href: "#" },
-                { name: "GitHub", icon: "🐙", href: "#" },
+                {
+                  name: "LinkedIn",
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/in/mohammad-falaha-6703091b8",
+                },
+                {
+                  name: "GitHub",
+                  icon: Github,
+                  href: "https://github.com/Motje3",
+                },
               ].map((social, index) => (
                 <motion.a
                   key={index}
@@ -890,8 +879,8 @@ const RestaurantQRProjectPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + index * 0.1 }}
                 >
-                  <motion.span
-                    className="text-2xl group-hover:scale-110 transition-transform duration-300"
+                  <motion.div
+                    className="group-hover:scale-110 transition-transform duration-300"
                     animate={{ rotate: [0, 5, -5, 0] }}
                     transition={{
                       duration: 3,
@@ -899,8 +888,8 @@ const RestaurantQRProjectPage = () => {
                       delay: index * 0.5,
                     }}
                   >
-                    {social.icon}
-                  </motion.span>
+                    <social.icon size={24} />
+                  </motion.div>
                   <span className="font-medium">{social.name}</span>
                 </motion.a>
               ))}

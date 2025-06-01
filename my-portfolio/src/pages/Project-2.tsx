@@ -174,7 +174,6 @@ const AIVulnerabilityScannerPage = () => {
     navigate("/");
   };
 
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -1068,8 +1067,16 @@ const AIVulnerabilityScannerPage = () => {
             <div className="flex justify-center space-x-6">
               {/* Social Links */}
               {[
-                { name: "LinkedIn", icon: Linkedin, href: "#" },
-                { name: "GitHub", icon: Github, href: "#" },
+                {
+                  name: "LinkedIn",
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/in/mohammad-falaha-6703091b8",
+                },
+                {
+                  name: "GitHub",
+                  icon: Github,
+                  href: "https://github.com/Motje3",
+                },
               ].map((social, index) => (
                 <motion.a
                   key={index}

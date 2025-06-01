@@ -832,8 +832,16 @@ const OfficeCalenderProjectPage = () => {
             <div className="flex justify-center space-x-6">
               {/* Social Links */}
               {[
-                { name: "LinkedIn", icon: "🔗", href: "#" },
-                { name: "GitHub", icon: "🐙", href: "#" },
+                {
+                  name: "LinkedIn",
+                  icon: "🔗",
+                  href: "https://www.linkedin.com/in/mohammad-falaha-6703091b8",
+                },
+                {
+                  name: "GitHub",
+                  icon: "🐙",
+                  href: "https://github.com/Motje3",
+                },
               ].map((social, index) => (
                 <motion.a
                   key={index}

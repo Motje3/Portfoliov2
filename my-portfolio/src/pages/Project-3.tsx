@@ -24,8 +24,8 @@ const QRShipmentTrackerPage = () => {
       setShowScrollTop(window.scrollY > window.innerHeight);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const features = [
@@ -65,47 +65,56 @@ const QRShipmentTrackerPage = () => {
       icon: "📱",
       color: "text-blue-400",
       bgGradient: "from-blue-500/20 to-cyan-500/20",
-      description: "Cross-platform mobile app for iOS and Android with native performance"
+      description:
+        "Cross-platform mobile app for iOS and Android with native performance",
     },
     {
       name: "TypeScript",
       icon: "🔷",
       color: "text-blue-500",
       bgGradient: "from-blue-600/20 to-indigo-500/20",
-      description: "Type-safe development for better code quality and fewer runtime errors"
+      description:
+        "Type-safe development for better code quality and fewer runtime errors",
     },
     {
       name: "Tailwind CSS",
       icon: "🎨",
       color: "text-teal-400",
       bgGradient: "from-teal-500/20 to-cyan-500/20",
-      description: "Utility-first CSS framework with NativeWind for consistent styling"
+      description:
+        "Utility-first CSS framework with NativeWind for consistent styling",
     },
     {
       name: "C# .NET",
       icon: "⚡",
       color: "text-purple-400",
       bgGradient: "from-purple-500/20 to-indigo-500/20",
-      description: "Robust backend API for handling shipment data and business logic"
+      description:
+        "Robust backend API for handling shipment data and business logic",
     },
     {
       name: "PostgreSQL",
       icon: "🐘",
       color: "text-blue-400",
       bgGradient: "from-blue-500/20 to-indigo-500/20",
-      description: "Enterprise-grade database for reliable shipment and tracking data"
+      description:
+        "Enterprise-grade database for reliable shipment and tracking data",
     },
     {
       name: "Neon Database",
       icon: "⚡",
       color: "text-green-400",
       bgGradient: "from-green-500/20 to-emerald-500/20",
-      description: "Serverless PostgreSQL platform for modern cloud applications"
+      description:
+        "Serverless PostgreSQL platform for modern cloud applications",
     },
   ];
 
   const trackingSteps = [
-    "Package Received", "In Transit", "Out for Delivery", "Delivered"
+    "Package Received",
+    "In Transit",
+    "Out for Delivery",
+    "Delivered",
   ];
 
   useEffect(() => {
@@ -144,7 +153,7 @@ const QRShipmentTrackerPage = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
@@ -176,7 +185,7 @@ const QRShipmentTrackerPage = () => {
             ease: "linear",
           }}
         />
-        
+
         {/* Static glowing tracking patterns */}
         {Array.from({ length: 12 }).map((_, i) => (
           <motion.div
@@ -317,21 +326,27 @@ const QRShipmentTrackerPage = () => {
                 className="text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 space-y-4"
               >
                 <p>
-                  A comprehensive QR-based shipment tracking system that 
+                  A comprehensive QR-based shipment tracking system that
                   <motion.span
                     className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 font-semibold"
                     whileHover={{ scale: 1.05 }}
                   >
-                    {" "}follows every shipment{" "}
+                    {" "}
+                    follows every shipment{" "}
                   </motion.span>
-                  from warehouse to doorstep with real-time updates and smart analytics.
+                  from warehouse to doorstep with real-time updates and smart
+                  analytics.
                 </p>
-                
+
                 {/* Animated tracking status display */}
-                <motion.div 
+                <motion.div
                   className="bg-gray-800/50 backdrop-blur-sm border border-blue-500/20 rounded-lg p-3 font-mono text-sm"
-                  animate={{ 
-                    boxShadow: ["0 0 0 rgba(59, 130, 246, 0)", "0 0 20px rgba(59, 130, 246, 0.3)", "0 0 0 rgba(59, 130, 246, 0)"] 
+                  animate={{
+                    boxShadow: [
+                      "0 0 0 rgba(59, 130, 246, 0)",
+                      "0 0 20px rgba(59, 130, 246, 0.3)",
+                      "0 0 0 rgba(59, 130, 246, 0)",
+                    ],
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
                 >
@@ -372,9 +387,7 @@ const QRShipmentTrackerPage = () => {
                   />
                   <div className="flex items-center justify-center space-x-2 relative z-10">
                     <Github size={20} />
-                    <span className="text-sm lg:text-base">
-                      View My Code
-                    </span>
+                    <span className="text-sm lg:text-base">View My Code</span>
                   </div>
                 </motion.button>
               </motion.div>
@@ -396,7 +409,7 @@ const QRShipmentTrackerPage = () => {
                     boxShadow: [
                       "0 0 0 rgba(59, 130, 246, 0)",
                       "0 0 30px rgba(59, 130, 246, 0.3)",
-                      "0 0 0 rgba(59, 130, 246, 0)"
+                      "0 0 0 rgba(59, 130, 246, 0)",
                     ],
                   }}
                   transition={{
@@ -407,7 +420,7 @@ const QRShipmentTrackerPage = () => {
                 >
                   {/* Phone Notch */}
                   <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-gray-800 rounded-b-2xl"></div>
-                  
+
                   {/* App Content */}
                   <div className="mt-8 space-y-6">
                     {/* Header */}
@@ -436,13 +449,19 @@ const QRShipmentTrackerPage = () => {
                       >
                         📦
                       </motion.div>
-                      <div className="text-white font-bold mb-2">Scan Shipment QR</div>
-                      <div className="text-gray-400 text-sm">Point camera at QR code</div>
+                      <div className="text-white font-bold mb-2">
+                        Scan Shipment QR
+                      </div>
+                      <div className="text-gray-400 text-sm">
+                        Point camera at QR code
+                      </div>
                     </motion.div>
 
                     {/* Recent Scans */}
                     <div className="space-y-3">
-                      <div className="text-white font-semibold text-sm">Recent Scans</div>
+                      <div className="text-white font-semibold text-sm">
+                        Recent Scans
+                      </div>
                       {[
                         { id: "PKG001", status: "Delivered", color: "green" },
                         { id: "PKG002", status: "In Transit", color: "blue" },
@@ -456,10 +475,14 @@ const QRShipmentTrackerPage = () => {
                           transition={{ delay: i * 0.2 }}
                         >
                           <div className="flex items-center space-x-3">
-                            <div className={`w-2 h-2 bg-${pkg.color}-400 rounded-full`}></div>
+                            <div
+                              className={`w-2 h-2 bg-${pkg.color}-400 rounded-full`}
+                            ></div>
                             <span className="text-white text-sm">{pkg.id}</span>
                           </div>
-                          <span className={`text-${pkg.color}-400 text-xs`}>{pkg.status}</span>
+                          <span className={`text-${pkg.color}-400 text-xs`}>
+                            {pkg.status}
+                          </span>
                         </motion.div>
                       ))}
                     </div>
@@ -519,7 +542,8 @@ const QRShipmentTrackerPage = () => {
               </span>
             </h2>
             <p className="text-gray-400 max-w-3xl mx-auto text-xl">
-              Everything needed to track shipments efficiently and keep customers happy
+              Everything needed to track shipments efficiently and keep
+              customers happy
             </p>
           </motion.div>
 
@@ -569,11 +593,11 @@ const QRShipmentTrackerPage = () => {
               viewport={{ once: true }}
             >
               <div className="text-center space-y-8">
-                <motion.div 
+                <motion.div
                   className="text-8xl"
-                  animate={{ 
+                  animate={{
                     rotate: [0, 5, -5, 0],
-                    scale: [1, 1.1, 1] 
+                    scale: [1, 1.1, 1],
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
@@ -678,7 +702,8 @@ const QRShipmentTrackerPage = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              The technologies and frameworks powering this shipment tracking system
+              The technologies and frameworks powering this shipment tracking
+              system
             </motion.p>
           </motion.div>
 
@@ -710,9 +735,13 @@ const QRShipmentTrackerPage = () => {
                   <div className="relative z-10 text-center space-y-4">
                     {/* Tech Icon */}
                     <div className="relative mx-auto w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 backdrop-blur-sm border border-blue-500/20 flex items-center justify-center text-3xl lg:text-4xl">
-                      <motion.span 
+                      <motion.span
                         className="relative z-10"
-                        animate={hoveredTech === index ? { rotate: [0, 15, -15, 0] } : {}}
+                        animate={
+                          hoveredTech === index
+                            ? { rotate: [0, 15, -15, 0] }
+                            : {}
+                        }
                         transition={{ duration: 0.5 }}
                       >
                         {tech.icon}
@@ -738,7 +767,10 @@ const QRShipmentTrackerPage = () => {
                     <div className="pt-2">
                       <div className="w-full bg-gray-700/50 rounded-full h-2 overflow-hidden">
                         <motion.div
-                          className={`h-full bg-gradient-to-r ${tech.bgGradient.replace("/20", "")}`}
+                          className={`h-full bg-gradient-to-r ${tech.bgGradient.replace(
+                            "/20",
+                            ""
+                          )}`}
                           initial={{ width: 0 }}
                           animate={{ width: "90%" }}
                           transition={{ duration: 1, delay: 0.2 + index * 0.1 }}
@@ -788,8 +820,10 @@ const QRShipmentTrackerPage = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left: Tracking Steps */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-white mb-6">Shipment Journey</h3>
-                
+                <h3 className="text-2xl font-bold text-white mb-6">
+                  Shipment Journey
+                </h3>
+
                 {/* Tracking Steps */}
                 {[
                   {
@@ -797,29 +831,29 @@ const QRShipmentTrackerPage = () => {
                     description: "QR code scanned at origin warehouse",
                     icon: "📱",
                     color: "blue",
-                    time: "09:15 AM"
+                    time: "09:15 AM",
                   },
                   {
                     step: "In Transit",
                     description: "Shipment loaded onto delivery vehicle",
                     icon: "🚚",
                     color: "yellow",
-                    time: "11:30 AM"
+                    time: "11:30 AM",
                   },
                   {
                     step: "Out for Delivery",
                     description: "Last mile delivery in progress",
                     icon: "📍",
                     color: "orange",
-                    time: "02:45 PM"
+                    time: "02:45 PM",
                   },
                   {
                     step: "Delivered",
                     description: "Shipment successfully delivered to customer",
                     icon: "✅",
                     color: "green",
-                    time: "04:20 PM"
-                  }
+                    time: "04:20 PM",
+                  },
                 ].map((step, index) => (
                   <motion.div
                     key={index}
@@ -833,10 +867,16 @@ const QRShipmentTrackerPage = () => {
                       <div className="text-3xl">{step.icon}</div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="text-lg font-bold text-white">{step.step}</h4>
-                          <span className="text-xs text-gray-400 font-mono">{step.time}</span>
+                          <h4 className="text-lg font-bold text-white">
+                            {step.step}
+                          </h4>
+                          <span className="text-xs text-gray-400 font-mono">
+                            {step.time}
+                          </span>
                         </div>
-                        <p className="text-gray-400 text-sm">{step.description}</p>
+                        <p className="text-gray-400 text-sm">
+                          {step.description}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -849,17 +889,25 @@ const QRShipmentTrackerPage = () => {
                   <span>📊</span>
                   <span>Live Dashboard</span>
                 </h3>
-                
+
                 <div className="space-y-4">
                   {/* Stats */}
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-gray-900/50 p-4 rounded-lg text-center">
-                      <div className="text-2xl font-bold text-blue-400">1,247</div>
-                      <div className="text-xs text-gray-400">Active Shipments</div>
+                      <div className="text-2xl font-bold text-blue-400">
+                        1,247
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        Active Shipments
+                      </div>
                     </div>
                     <div className="bg-gray-900/50 p-4 rounded-lg text-center">
-                      <div className="text-2xl font-bold text-green-400">98.5%</div>
-                      <div className="text-xs text-gray-400">On-Time Delivery</div>
+                      <div className="text-2xl font-bold text-green-400">
+                        98.5%
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        On-Time Delivery
+                      </div>
                     </div>
                   </div>
 
@@ -870,11 +918,21 @@ const QRShipmentTrackerPage = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.5 }}
                   >
-                    <div className="text-sm font-semibold text-gray-300">Recent Activity</div>
+                    <div className="text-sm font-semibold text-gray-300">
+                      Recent Activity
+                    </div>
                     {[
                       { id: "TRK001", action: "Delivered", time: "2 min ago" },
-                      { id: "TRK002", action: "Out for delivery", time: "15 min ago" },
-                      { id: "TRK003", action: "In transit", time: "1 hour ago" },
+                      {
+                        id: "TRK002",
+                        action: "Out for delivery",
+                        time: "15 min ago",
+                      },
+                      {
+                        id: "TRK003",
+                        action: "In transit",
+                        time: "1 hour ago",
+                      },
                     ].map((activity, i) => (
                       <motion.div
                         key={i}
@@ -885,10 +943,16 @@ const QRShipmentTrackerPage = () => {
                       >
                         <div className="flex items-center space-x-3">
                           <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-                          <span className="text-white text-sm">{activity.id}</span>
-                          <span className="text-gray-400 text-xs">{activity.action}</span>
+                          <span className="text-white text-sm">
+                            {activity.id}
+                          </span>
+                          <span className="text-gray-400 text-xs">
+                            {activity.action}
+                          </span>
                         </div>
-                        <span className="text-gray-500 text-xs">{activity.time}</span>
+                        <span className="text-gray-500 text-xs">
+                          {activity.time}
+                        </span>
                       </motion.div>
                     ))}
                   </motion.div>
@@ -933,8 +997,9 @@ const QRShipmentTrackerPage = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              This shipment tracking system showcases modern mobile development with React Native 
-              and a robust .NET backend. Check out the code to see the implementation details!
+              This shipment tracking system showcases modern mobile development
+              with React Native and a robust .NET backend. Check out the code to
+              see the implementation details!
             </motion.p>
           </motion.div>
 
@@ -1005,8 +1070,16 @@ const QRShipmentTrackerPage = () => {
             <div className="flex justify-center space-x-6">
               {/* Social Links */}
               {[
-                { name: "LinkedIn", icon: Linkedin, href: "#" },
-                { name: "GitHub", icon: Github, href: "#" },
+                {
+                  name: "LinkedIn",
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/in/mohammad-falaha-6703091b8",
+                },
+                {
+                  name: "GitHub",
+                  icon: Github,
+                  href: "https://github.com/Motje3",
+                },
               ].map((social, index) => (
                 <motion.a
                   key={index}
