@@ -174,10 +174,6 @@ const AIVulnerabilityScannerPage = () => {
     navigate("/");
   };
 
-  const startScan = () => {
-    setIsScanning(true);
-    setScanProgress(0);
-  };
 
   const scrollToTop = () => {
     window.scrollTo({
