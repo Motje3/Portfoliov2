@@ -6,7 +6,7 @@ import {
 } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Github } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 
 const OfficeCalenderProjectPage = () => {
   const navigate = useNavigate();
@@ -834,12 +834,12 @@ const OfficeCalenderProjectPage = () => {
               {[
                 {
                   name: "LinkedIn",
-                  icon: "🔗",
+                  icon: Linkedin,
                   href: "https://www.linkedin.com/in/mohammad-falaha-6703091b8",
                 },
                 {
                   name: "GitHub",
-                  icon: "🐙",
+                  icon: Github,
                   href: "https://github.com/Motje3",
                 },
               ].map((social, index) => (
@@ -852,8 +852,8 @@ const OfficeCalenderProjectPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + index * 0.1 }}
                 >
-                  <motion.span
-                    className="text-2xl group-hover:scale-110 transition-transform duration-300"
+                  <motion.div
+                    className="group-hover:scale-110 transition-transform duration-300"
                     animate={{ rotate: [0, 5, -5, 0] }}
                     transition={{
                       duration: 3,
@@ -861,8 +861,8 @@ const OfficeCalenderProjectPage = () => {
                       delay: index * 0.5,
                     }}
                   >
-                    {social.icon}
-                  </motion.span>
+                    <social.icon size={24} />
+                  </motion.div>
                   <span className="font-medium">{social.name}</span>
                 </motion.a>
               ))}

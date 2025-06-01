@@ -371,6 +371,12 @@ const QRShipmentTrackerPage = () => {
                   className="relative bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-xl font-semibold transition-all duration-300 overflow-hidden group"
                   whileHover={{ scale: 1.05, y: -3 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() =>
+                    window.open(
+                      "https://github.com/Motje3/QR-Scanner-Tracking",
+                      "_blank"
+                    )
+                  }
                 >
                   <motion.div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <motion.div
@@ -1011,12 +1017,16 @@ const QRShipmentTrackerPage = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            {/* Back to Projects Button */}
             <motion.button
               className="relative bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 overflow-hidden group min-w-[200px]"
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.open("#", "_blank")}
+              onClick={() =>
+                window.open(
+                  "https://github.com/Motje3/QR-Scanner-Tracking",
+                  "_blank"
+                )
+              }
             >
               <motion.div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <motion.div
